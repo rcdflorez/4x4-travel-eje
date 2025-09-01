@@ -1,0 +1,164 @@
+{
+  "expedition": {
+    "name": "Expedición Bosque de Palmas & Cerro Machín",
+    "shortName": "Bosque de Palmas & Cerro Machín",
+    "dates": {
+      "start": "2025-11-21",
+      "end": "2025-11-23",
+      "display": "21 al 23 de noviembre de 2025",
+      "year": 2025,
+      "month": 11,
+      "dayStart": 21,
+      "dayEnd": 23
+    },
+    "location": {
+      "start": "Salento, Quindío",
+      "end": "Cajamarca, Tolima",
+      "route": "Camino Nacional hacia Toche",
+      "highlights": [
+        "Cena de integración en Salento",
+        "Bosque de 700 mil palmas de cera",
+        "Aguas termales volcánicas",
+        "Ascenso en trocha al Cerro Machín"
+      ]
+    },
+    "capacity": {
+      "maxVehicles": 10,
+      "minAge": 12,
+      "description": "Cupos limitados a 10 vehículos"
+    }
+  },
+  "pricing": {
+    "perPerson": {
+      "amount": 580550,
+      "currency": "COP",
+      "display": "$580.550"
+    },
+    "description": "Tu cupo queda asegurado únicamente con el pago de la inscripción"
+  },
+  "payment": {
+    "bank": "Bancolombia",
+    "accountType": "Ahorros",
+    "accountNumber": "75600011901",
+    "accountHolder": "Maritza Gallego Urrego",
+    "accountHolderId": "1094882412",
+    "display": "Bancolombia Ahorros 75600011901 — Maritza Gallego Urrego — CC 1094882412"
+  },
+  "refundPolicy": {
+    "fullRefund": {
+      "date": "2025-10-21",
+      "description": "100% hasta el 21 de octubre"
+    },
+    "partialRefund": {
+      "date": "2025-10-26",
+      "percentage": 50,
+      "description": "50% hasta el 26 de octubre"
+    },
+    "noRefund": {
+      "date": "2025-11-01",
+      "description": "Desde el 1 de noviembre no hay reembolso"
+    }
+  },
+  "includes": [
+    "Guías profesionales",
+    "Equipo de comunicación",
+    "Kit de stickers de expedición",
+    "Prenda de aventura",
+    "2 noches de hospedaje (privada, doble o familiar)",
+    "Cena de integración del viernes",
+    "Alimentación sábado y domingo",
+    "Asistencia mecánica y primeros auxilios",
+    "Seguro de asistencia",
+    "Fotografía y video profesional"
+  ],
+  "notIncluded": [
+    "Vehículo y combustible",
+    "Gastos personales y no especificados"
+  ],
+  "requirements": {
+    "vehicle": {
+      "type": "Doble tracción",
+      "preferred": "Con bajo",
+      "documents": [
+        "SOAT",
+        "Técnico mecánica",
+        "Seguro"
+      ]
+    },
+    "equipment": [
+      "Botas pantaneras",
+      "Equipo de recuperación (eslingas)",
+      "Vestido de baño",
+      "Ropa cómoda para actividades"
+    ],
+    "age": "Mayores de 12 años"
+  },
+  "itinerary": {
+    "day1": {
+      "title": "Viernes: Llegada a Salento — Cena de Integración",
+      "description": "Llegada a Salento en la tarde. Check-in en uno de los mejores hoteles de Salento. Cena de integración con todos los participantes de la expedición."
+    },
+    "day2": {
+      "title": "Sábado: Salento — Toche — Termales",
+      "description": "Salida desde Salento en la mañana. Recorrido por el Camino Nacional hacia Toche con parada para almorzar en finca rodeada por un bosque de más de 700 mil palmas de cera. Tarde de relajación en aguas termales del volcán."
+    },
+    "day3": {
+      "title": "Domingo: Ascenso Cerro Machín — Cajamarca",
+      "description": "Ascenso en trocha hasta el volcán Machín, con miradores y paisajes espectaculares. Cierre del recorrido y llegada a Cajamarca al mediodía."
+    }
+  },
+  "contact": {
+    "whatsapp": {
+      "number": "573045374705",
+      "url": "https://wa.me/573045374705",
+      "texts": {
+        "registration": "Quiero inscribirme a la Expedición Bosque de Palmas & Cerro Machín (21-23 Nov 2025)",
+        "info": "Hola, tengo preguntas sobre la expedición"
+      }
+    },
+    "social": {
+      "instagram": "https://www.instagram.com/overland_en_familia/",
+      "facebook": "https://facebook.com/profile.php?id=100087038310912",
+      "youtube": "https://www.youtube.com/channel/UC6zzEK3vhhc7b_E-IXA56Hw",
+      "tiktok": "https://www.tiktok.com/@overlandenfamilia"
+    }
+  },
+  "gallery": {
+    "albums": [
+      {
+        "name": "Álbum 1",
+        "url": "https://photos.app.goo.gl/BvyRcjdqs3vTvYcz9"
+      },
+      {
+        "name": "Álbum 2", 
+        "url": "https://photos.app.goo.gl/71RbpDh7DwFdfZa4A"
+      },
+      {
+        "name": "Álbum 3",
+        "url": "https://photos.app.goo.gl/ifNRyV9hJCXzAzVt6"
+      }
+    ]
+  },
+  "branding": {
+    "company": "4X4 Travel Eje",
+    "tagline": "Aventuras 4x4 en Colombia",
+    "logo": {
+      "hero": "/bosque-palmas-machin/assets/images/4x4travelejelogo.png",
+      "footer": "/bosque-palmas-machin/assets/images/4x4travelejelogo.png"
+    }
+  },
+  "seo": {
+    "title": "Expedición Bosque de Palmas & Cerro Machín (21-23 Nov 2025) | 4X4 Travel Eje",
+    "description": "Vive un fin de semana 4x4 por el Bosque de Palmas y el volcán Cerro Machín: aventura, paisajes y actividades en grupo. Cupos limitados a 10 vehículos.",
+    "keywords": [
+      "expedición 4x4",
+      "bosque de palmas",
+      "cerro machín",
+      "aventura colombia",
+      "overlanding",
+      "salento",
+      "cajamarca"
+    ],
+    "canonical": "https://www.overlandenfamilia.com/bosque-palmas-machin/"
+  }
+}
