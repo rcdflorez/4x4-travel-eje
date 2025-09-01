@@ -135,19 +135,31 @@ a:hover { text-decoration: underline; }
 /* Grids */
 .benefits-grid, .features-grid { 
   display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-  gap: 24px; 
-  margin-top: 32px; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 40px; 
+  margin-top: 48px;
+  padding: 0 16px;
 }
 .feature-item, .benefit-item { 
-  background: rgba(255,255,255,0.03); 
+  background: linear-gradient(180deg, rgba(255,122,26,0.1), rgba(255,122,26,0.03));
   border: 1px solid rgba(255,122,26,0.25); 
-  padding: 24px; 
-  border-radius: var(--radius); 
+  padding: 32px 24px; 
+  border-radius: var(--radius);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-item:hover, .benefit-item:hover { 
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255,122,26,0.15);
 }
 .feature-item h3 { 
-  margin: 0 0 12px; 
-  font-size: 18px; 
+  color: var(--brand);
+  margin: 0 0 16px; 
+  font-size: 1.4em;
+}
+.feature-item p {
+  line-height: 1.6;
+  opacity: 0.9;
+  font-size: 1.05em;
 }
 
 /* Itinerary */
