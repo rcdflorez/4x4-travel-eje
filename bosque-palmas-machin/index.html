@@ -43,9 +43,9 @@
       { rel: 'apple-touch-icon', sizes: '180x180', href: 'images/apple-touch-icon.png' },
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'images/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'images/favicon-16x16.png' },
-      { rel: 'preload', as: 'image', href: 'images/hero_3.webp', fetchpriority: 'high' },
+      // Preload crítico solo para la primera imagen hero
       { rel: 'preload', as: 'image', href: 'images/hero_1.webp', fetchpriority: 'high' },
-      { rel: 'preload', as: 'image', href: 'images/hero_2.webp', fetchpriority: 'high' },
+      { rel: 'preload', as: 'image', href: 'images/logo/logo-final.png', fetchpriority: 'high' },
       { rel: 'stylesheet', href: 'style.css' }
     ];
 
@@ -96,14 +96,18 @@
   </script>
 </head>
 <body>
+  <div class="scroll-indicator"></div>
 
 
   <section id="inicio" class="hero-section">
     <div class="hero-background-slider"></div>
     <div class="hero-content container">
-      <div class="hero-logo">
-        <img src="" alt="4X4 Travel Eje logo" data-src="images/4x4travelejelogo.png">
-      </div>
+              <div class="hero-logo">
+            <picture>
+                <source srcset="" type="image/webp" data-srcset="images/logo/logo-final.webp">
+                <img src="" alt="4X4 Travel Eje logo" data-src="images/logo/logo-final.png" loading="lazy" decoding="async">
+            </picture>
+        </div>
     
       <div class="hero-title">
         <h1>Expedición Bosque de Palmas & Cerro Volcán Machín</h1>
@@ -232,7 +236,10 @@
       <div class="gallery-grid">
         <div class="gallery-item">
           <div class="gallery-preview">
-            <img src="assets/images/gallery-preview-1.jpg" alt="Vista previa Expedición Valle del Cocora" class="preview-image" loading="lazy">
+            <picture>
+                <source srcset="" type="image/webp" data-srcset="images/gallery-preview-1.webp">
+                <img src="" alt="Vista previa Expedición 100" class="preview-image" data-src="images/gallery-preview-1.jpg" loading="lazy" decoding="async">
+            </picture>
             <div class="google-photos-badge">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -241,7 +248,7 @@
             </div>
           </div>
           <div class="gallery-info">
-            <h3>Expedición Valle del Cocora</h3>
+            <h3>Expedición 100</h3>
             <p>Paisajes majestuosos y palmas de cera</p>
             <span class="photo-count">+150 fotos</span>
           </div>
@@ -252,7 +259,10 @@
 
         <div class="gallery-item">
           <div class="gallery-preview">
-            <img src="assets/images/gallery-preview-2.jpg" alt="Vista previa Expedición Cerro Machín" class="preview-image" loading="lazy">
+            <picture>
+                <source srcset="" type="image/webp" data-srcset="images/gallery-preview-2.webp">
+                <img src="" alt="Vista previa Expedición 200" class="preview-image" data-src="images/gallery-preview-2.jpg" loading="lazy" decoding="async">
+            </picture>
             <div class="google-photos-badge">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -261,7 +271,7 @@
             </div>
           </div>
           <div class="gallery-info">
-            <h3>Expedición Cerro Machín</h3>
+            <h3>Expedición 200</h3>
             <p>Aventuras 4x4 y vistas panorámicas</p>
             <span class="photo-count">+120 fotos</span>
           </div>
@@ -272,7 +282,10 @@
 
         <div class="gallery-item">
           <div class="gallery-preview">
-            <img src="assets/images/gallery-preview-3.jpg" alt="Vista previa Expedición Bosque de Palmas" class="preview-image" loading="lazy">
+            <picture>
+                <source srcset="" type="image/webp" data-srcset="images/gallery-preview-3.webp">
+                <img src="" alt="Vista previa Expedición 300" class="preview-image" data-src="images/gallery-preview-3.jpg" loading="lazy" decoding="async">
+            </picture>
             <div class="google-photos-badge">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -281,7 +294,7 @@
             </div>
           </div>
           <div class="gallery-info">
-            <h3>Expedición Bosque de Palmas</h3>
+            <h3>Expedición 300</h3>
             <p>Naturaleza salvaje y aventura extrema</p>
             <span class="photo-count">+200 fotos</span>
           </div>
@@ -358,7 +371,10 @@
   </main>
 
   <footer class="footer-section">
-    <img src="" loading="lazy" alt="4X4 Travel Eje Logo" class="footer-logo" data-src="images/4x4travelejelogo.png">
+            <picture>
+                <source srcset="" type="image/webp" data-srcset="images/logo/logo-final.webp">
+                <img src="" loading="lazy" alt="4X4 Travel Eje Logo" class="footer-logo" data-src="images/logo/logo-final.png" decoding="async">
+            </picture>
     <p>4X4 Travel Eje - Aventuras 4x4 en Colombia</p>
     <div class="contact-info">
       <ul class="icons">

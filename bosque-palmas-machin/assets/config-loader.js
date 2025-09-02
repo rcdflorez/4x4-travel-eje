@@ -46,30 +46,13 @@ class ExpeditionConfig {
   updatePageContent() {
     if (!this.config) return;
 
+    console.log('Updating page content from config...');
+
     // Título principal
     this.updateElement('.hero-title h1', this.config.expedition.name);
     
     // Fechas
     this.updateElement('.gp-hero-dates', this.config.expedition.dates.display);
-    
-    // Precios
-    this.updateElement('.pricing-info li:first-child strong', 
-      `Vehículo + piloto: ${this.config.pricing.vehicleAndDriver.display}`);
-    this.updateElement('.pricing-info li:nth-child(2) strong', 
-      `Pasajero adicional: ${this.config.pricing.additionalPassenger.display}`);
-    
-    // Cupos
-    this.updateElement('.pricing-info li:nth-child(3) strong', 
-      `Cupos: ${this.config.expedition.capacity.maxVehicles} vehículos`);
-    
-    // Información de pago
-    this.updateElement('.payment-info p:first-child strong', 
-      `Pagos: ${this.config.payment.display}`);
-    
-    // Política de reembolsos
-    const refundText = `${this.config.refundPolicy.fullRefund.description}; ${this.config.refundPolicy.partialRefund.description}; ${this.config.refundPolicy.noRefund.description}`;
-    this.updateElement('.payment-info p:nth-child(2) strong', 
-      `Política de reembolsos: ${refundText}`);
     
     // Lista de incluye
     this.updateList('#incluye .includes ul', this.config.includes);
@@ -77,17 +60,13 @@ class ExpeditionConfig {
     // Lista de no incluye
     this.updateList('#incluye .excludes ul', this.config.notIncluded);
     
-    // Itinerario
-    this.updateItinerary();
-    
-    // Galería
-    this.updateGallery();
-    
     // Enlaces de WhatsApp
     this.updateWhatsAppLinks();
     
     // Enlaces sociales
     this.updateSocialLinks();
+    
+    console.log('Page content updated successfully');
   }
 
   updateElement(selector, text) {
@@ -105,24 +84,15 @@ class ExpeditionConfig {
   }
 
   updateItinerary() {
-    const day1 = document.querySelector('#itinerario .itinerary-day:nth-child(1) summary');
-    const day1Desc = document.querySelector('#itinerario .itinerary-day:nth-child(1) p');
-    const day2 = document.querySelector('#itinerario .itinerary-day:nth-child(2) summary');
-    const day2Desc = document.querySelector('#itinerario .itinerary-day:nth-child(2) p');
-    
-    if (day1) day1.textContent = this.config.itinerary.day1.title;
-    if (day1Desc) day1Desc.textContent = this.config.itinerary.day1.description;
-    if (day2) day2.textContent = this.config.itinerary.day2.title;
-    if (day2Desc) day2Desc.textContent = this.config.itinerary.day2.description;
+    // El itinerario está hardcodeado en el HTML
+    // No necesitamos actualizar desde config.json
+    console.log('Itinerary is hardcoded in HTML');
   }
 
   updateGallery() {
-    const galleryList = document.querySelector('.gallery-links');
-    if (galleryList) {
-      galleryList.innerHTML = this.config.gallery.albums.map(album => 
-        `<li><a href="${album.url}" target="_blank" rel="noopener noreferrer">${album.name}</a></li>`
-      ).join('');
-    }
+    // La galería ahora se maneja con JavaScript dinámico
+    // No necesitamos actualizar desde config.json
+    console.log('Gallery updated dynamically');
   }
 
   updateWhatsAppLinks() {

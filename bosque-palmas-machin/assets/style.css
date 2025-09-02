@@ -1,3 +1,58 @@
+/* Enhanced Smooth Scrolling Styles */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Offset para elementos fijos */
+}
+
+/* Estilos para enlaces activos */
+a[href^="#"].active {
+  color: var(--brand) !important;
+  font-weight: var(--font-semibold);
+}
+
+/* Efectos de hover mejorados para enlaces internos */
+a[href^="#"] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+a[href^="#"]:hover {
+  color: var(--brand);
+  transform: translateY(-1px);
+}
+
+/* Efecto de escala para botones CTA */
+.btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 122, 26, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Indicador de scroll suave */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.scroll-indicator.active {
+  transform: scaleX(1);
+}
+
 /* Base styles placeholder; will be filled later */
 :root {
   --bg: #0b0f14;
@@ -136,9 +191,10 @@ a:hover { text-decoration: underline; }
   transform: translateY(-2px);
 }
 .hero-logo img { 
-  width: 120px; 
+  width: 140px; 
   margin: 0 auto 12px; 
   opacity: 0.95; 
+  height: auto;
 }
 .expedition-badge {
   display: inline-block;
@@ -533,7 +589,7 @@ p {
 /* Gallery */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin: 32px 0 0;
 }
@@ -638,54 +694,28 @@ p {
   text-decoration: none;
 }
 
-/* Preview image placeholders with gradients */
-.gallery-item:nth-child(1) .gallery-preview {
-  background: linear-gradient(135deg, #2d5a27, #4a7c59, #6b8e23);
+/* Preview images now have actual content */
+
+/* Placeholder gradients are now handled by the actual images */
+
+/* Gallery Loading Animation */
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.gallery-item:nth-child(2) .gallery-preview {
-  background: linear-gradient(135deg, #8b4513, #a0522d, #cd853f);
-}
-
-.gallery-item:nth-child(3) .gallery-preview {
-  background: linear-gradient(135deg, #2f4f2f, #556b2f, #6b8e23);
-}
-
-/* Add expedition icons to placeholders */
-.gallery-item:nth-child(1) .gallery-preview::after {
-  content: "🌴";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 64px;
-  opacity: 0.4;
-  z-index: 1;
-}
-
-.gallery-item:nth-child(2) .gallery-preview::after {
-  content: "⛰️";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 64px;
-  opacity: 0.4;
-  z-index: 1;
-}
-
-.gallery-item:nth-child(3) .gallery-preview::after {
-  content: "🌲";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 64px;
-  opacity: 0.4;
-  z-index: 1;
+.image-loading-spinner {
+  animation: spin 1s linear infinite;
 }
 
 /* Gallery Responsive */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .gallery-grid {
     grid-template-columns: 1fr;
@@ -725,6 +755,7 @@ p {
   width: 140px; 
   margin: 0 auto 24px; 
   opacity: 0.9; 
+  height: auto;
 }
 .icons { 
   list-style: none; 
