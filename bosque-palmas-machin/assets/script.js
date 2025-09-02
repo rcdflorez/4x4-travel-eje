@@ -57,12 +57,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Hero background slider
   const slider = document.querySelector('.hero-background-slider');
   if (slider && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    // Usar la configuración de rutas global
+    // Las imágenes ya están precargadas, solo necesitamos las rutas
     const images = [
       getAssetPath('images/hero_3.webp'),
       getAssetPath('images/hero_1.webp'),
       getAssetPath('images/hero_2.webp')
     ];
+    console.log('Slider images:', images);
     let idx = 0;
     const setBg = () => {
       slider.style.backgroundImage = `url(${images[idx % images.length]})`;

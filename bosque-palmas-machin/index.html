@@ -112,9 +112,9 @@
       <div class="hero-logo">
         <img src="" alt="4X4 Travel Eje logo" data-src="images/4x4travelejelogo.png">
       </div>
-      <div class="expedition-badge">Expedición 4x4</div>
+    
       <div class="hero-title">
-        <h1>Bosque de Palmas & Cerro Volcán Machín</h1>
+        <h1>Expedición Bosque de Palmas & Cerro Volcán Machín</h1>
       </div>
       <div class="expedition-dates">
         <div class="date-badge">
@@ -122,7 +122,7 @@
           <div class="date-days">21-23</div>
           <div class="date-year">2025</div>
         </div>
-        <p class="date-description">3 días de aventura · 2 noches de alojamiento premium</p>
+        
       </div>
       <p class="expedition-intro">Una expedición única a través de paisajes espectaculares, termales volcánicos y el majestuoso bosque de palmas más grande del mundo. Cupos limitados a 10 vehículos.</p>
 
@@ -287,15 +287,32 @@
   <script>
     // Función para inicializar la aplicación
     async function initializeApp() {
-      // Cargar imágenes
-      document.querySelectorAll('img[data-src]').forEach(img => {
-        img.src = getAssetPath(img.dataset.src);
-      });
-
       try {
+        // Cargar imágenes estáticas
+        document.querySelectorAll('img[data-src]').forEach(img => {
+          img.src = getAssetPath(img.dataset.src);
+        });
+
         // Inicializar configuración
         window.expeditionConfig = new ExpeditionConfig();
         await window.expeditionConfig.loadConfig();
+        
+        // Precargar imágenes del slider
+        const sliderImages = [
+          getAssetPath('images/hero_1.webp'),
+          getAssetPath('images/hero_2.webp'),
+          getAssetPath('images/hero_3.webp')
+        ];
+        
+        // Precargar imágenes
+        await Promise.all(sliderImages.map(src => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = resolve;
+            img.onerror = reject;
+            img.src = src;
+          });
+        }));
         
         // Cargar script principal
         const script = document.createElement('script');
@@ -312,7 +329,6 @@
     configLoaderScript.onload = initializeApp;
     configLoaderScript.onerror = () => console.error('Failed to load config-loader.js');
     document.body.appendChild(configLoaderScript);
-  </script>
   </script>
 </body>
 </html>
