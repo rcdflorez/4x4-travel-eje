@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const slider = document.querySelector('.hero-background-slider');
   if (slider && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const images = [
+      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_3.webp',
       '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_1.webp',
-      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_2.webp',
-      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_3.webp'
+      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_2.webp'
     ];
     let idx = 0;
     const setBg = () => {
