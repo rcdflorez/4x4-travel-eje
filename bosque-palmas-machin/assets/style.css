@@ -531,21 +531,187 @@ p {
 }
 
 /* Gallery */
-.gallery-links { 
-  list-style: none; 
-  padding: 0; 
-  margin: 32px 0 0; 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-  gap: 16px; 
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin: 32px 0 0;
 }
-.gallery-links a { 
-  display: block; 
-  background: rgba(255,255,255,0.03); 
-  padding: 16px; 
-  border: 1px solid rgba(255,255,255,0.06); 
-  border-radius: var(--radius); 
-  text-align: center; 
+
+.gallery-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(255,122,26,0.15);
+  border-color: rgba(255,122,26,0.3);
+}
+
+.gallery-preview {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .preview-image {
+  transform: scale(1.05);
+}
+
+.google-photos-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.google-photos-badge svg {
+  color: #4285f4;
+}
+
+.gallery-info {
+  padding: 20px;
+}
+
+.gallery-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.gallery-info p {
+  margin: 0 0 12px 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.photo-count {
+  display: inline-block;
+  background: rgba(255,122,26,0.15);
+  color: var(--brand);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.gallery-link {
+  display: block;
+  background: rgba(255,122,26,0.1);
+  color: var(--brand);
+  text-decoration: none;
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.gallery-link:hover {
+  background: rgba(255,122,26,0.2);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Preview image placeholders with gradients */
+.gallery-item:nth-child(1) .gallery-preview {
+  background: linear-gradient(135deg, #2d5a27, #4a7c59, #6b8e23);
+}
+
+.gallery-item:nth-child(2) .gallery-preview {
+  background: linear-gradient(135deg, #8b4513, #a0522d, #cd853f);
+}
+
+.gallery-item:nth-child(3) .gallery-preview {
+  background: linear-gradient(135deg, #2f4f2f, #556b2f, #6b8e23);
+}
+
+/* Add expedition icons to placeholders */
+.gallery-item:nth-child(1) .gallery-preview::after {
+  content: "🌴";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.gallery-item:nth-child(2) .gallery-preview::after {
+  content: "⛰️";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.gallery-item:nth-child(3) .gallery-preview::after {
+  content: "🌲";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* Gallery Responsive */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .gallery-preview {
+    height: 160px;
+  }
+  
+  .gallery-info {
+    padding: 16px;
+  }
+  
+  .gallery-info h3 {
+    font-size: 16px;
+  }
+  
+  .gallery-info p {
+    font-size: 13px;
+  }
+  
+  .google-photos-badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
 }
 
 /* Footer */
