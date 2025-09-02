@@ -4,26 +4,27 @@ class ExpeditionConfig {
     this.config = null;
   }
 
+  getBasePath() {
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    return isLocalhost ? '/bosque-palmas-machin' : '/4x4-travel-eje/bosque-palmas-machin';
+  }
+
   async loadConfig() {
     try {
-      // Intentar primero con la ruta de GitHub Pages
-      let response = await fetch('/4x4-travel-eje/bosque-palmas-machin/config.json');
+      const basePath = this.getBasePath();
+      const response = await fetch(`${basePath}/config.json`);
       
-      // Si falla, intentar con la ruta local
       if (!response.ok) {
-        response = await fetch('/bosque-palmas-machin/config.json');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       
       this.config = await response.json();
       
       // Ajustar las rutas base según el entorno
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        this.config.paths.base = '/bosque-palmas-machin';
-        this.config.paths.assets = '/bosque-palmas-machin/assets';
-      } else {
-        this.config.paths.base = '/4x4-travel-eje/bosque-palmas-machin';
-        this.config.paths.assets = '/4x4-travel-eje/bosque-palmas-machin/assets';
-      }
+      this.config.paths = {
+        base: this.getBasePath(),
+        assets: `${this.getBasePath()}/assets`
+      };
       
       return this.config;
     } catch (error) {

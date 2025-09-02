@@ -58,7 +58,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const slider = document.querySelector('.hero-background-slider');
   if (slider && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const config = window.expeditionConfig;
-    const basePath = config?.config?.paths?.assets || '/bosque-palmas-machin/assets';
+    const getBasePath = () => {
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      return isLocalhost ? '/bosque-palmas-machin/assets' : '/4x4-travel-eje/bosque-palmas-machin/assets';
+    };
+    const basePath = config?.config?.paths?.assets || getBasePath();
     const images = [
       `${basePath}/images/hero_3.webp`,
       `${basePath}/images/hero_1.webp`,
