@@ -6,8 +6,25 @@ class ExpeditionConfig {
 
   async loadConfig() {
     try {
-      const response = await fetch('/bosque-palmas-machin/config.json');
+      // Intentar primero con la ruta de GitHub Pages
+      let response = await fetch('/4x4-travel-eje/bosque-palmas-machin/config.json');
+      
+      // Si falla, intentar con la ruta local
+      if (!response.ok) {
+        response = await fetch('/bosque-palmas-machin/config.json');
+      }
+      
       this.config = await response.json();
+      
+      // Ajustar las rutas base según el entorno
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        this.config.paths.base = '/bosque-palmas-machin';
+        this.config.paths.assets = '/bosque-palmas-machin/assets';
+      } else {
+        this.config.paths.base = '/4x4-travel-eje/bosque-palmas-machin';
+        this.config.paths.assets = '/4x4-travel-eje/bosque-palmas-machin/assets';
+      }
+      
       return this.config;
     } catch (error) {
       console.error('Error cargando configuración:', error);

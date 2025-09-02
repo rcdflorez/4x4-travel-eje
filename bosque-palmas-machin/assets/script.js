@@ -57,10 +57,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Hero background slider
   const slider = document.querySelector('.hero-background-slider');
   if (slider && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const config = window.expeditionConfig;
+    const basePath = config?.config?.paths?.assets || '/bosque-palmas-machin/assets';
     const images = [
-      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_3.webp',
-      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_1.webp',
-      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_2.webp'
+      `${basePath}/images/hero_3.webp`,
+      `${basePath}/images/hero_1.webp`,
+      `${basePath}/images/hero_2.webp`
     ];
     let idx = 0;
     const setBg = () => {

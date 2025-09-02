@@ -139,12 +139,16 @@
       }
     ]
   },
+  "paths": {
+    "base": "/bosque-palmas-machin",
+    "assets": "/bosque-palmas-machin/assets"
+  },
   "branding": {
     "company": "4X4 Travel Eje",
     "tagline": "Aventuras 4x4 en Colombia",
     "logo": {
-      "hero": "/4x4-travel-eje/bosque-palmas-machin/assets/images/4x4travelejelogo.png",
-      "footer": "/4x4-travel-eje/bosque-palmas-machin/assets/images/4x4travelejelogo.png"
+      "hero": "/bosque-palmas-machin/assets/images/4x4travelejelogo.png",
+      "footer": "/bosque-palmas-machin/assets/images/4x4travelejelogo.png"
     }
   },
   "seo": {
