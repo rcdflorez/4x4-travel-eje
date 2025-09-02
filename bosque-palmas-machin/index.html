@@ -285,30 +285,34 @@
   </footer>
 
   <script>
-    // Cargar config-loader.js dinámicamente
-    const configLoaderScript = document.createElement('script');
-    configLoaderScript.src = window.pathConfig.getAssetsPath() + '/config-loader.js';
-    document.body.appendChild(configLoaderScript);
-  </script>
-  <script>
-    // Cargar imágenes dinámicamente
-    function loadImages() {
+    // Función para inicializar la aplicación
+    async function initializeApp() {
+      // Cargar imágenes
       document.querySelectorAll('img[data-src]').forEach(img => {
         img.src = getAssetPath(img.dataset.src);
       });
+
+      try {
+        // Inicializar configuración
+        window.expeditionConfig = new ExpeditionConfig();
+        await window.expeditionConfig.loadConfig();
+        
+        // Cargar script principal
+        const script = document.createElement('script');
+        script.src = getAssetPath('script.js');
+        document.body.appendChild(script);
+      } catch (error) {
+        console.error('Error initializing app:', error);
+      }
     }
 
-    // Inicializar la configuración antes de cargar el script principal
-    window.expeditionConfig = new ExpeditionConfig();
-    window.expeditionConfig.loadConfig().then(() => {
-      // Cargar imágenes
-      loadImages();
-      
-      // Cargar el script principal después de tener la configuración
-      const script = document.createElement('script');
-      script.src = getAssetPath('script.js');
-      document.body.appendChild(script);
-    });
+    // Cargar config-loader.js y esperar a que esté listo
+    const configLoaderScript = document.createElement('script');
+    configLoaderScript.src = window.pathConfig.getAssetsPath() + '/config-loader.js';
+    configLoaderScript.onload = initializeApp;
+    configLoaderScript.onerror = () => console.error('Failed to load config-loader.js');
+    document.body.appendChild(configLoaderScript);
+  </script>
   </script>
 </body>
 </html>
