@@ -1,108 +1,71 @@
-// Función para inicializar el slider
-const initSlider = async () => {
-  // Función local para obtener rutas de assets
-  const getSliderImagePath = (path) => {
-    const base = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? '/bosque-palmas-machin/assets'
-      : '/4x4-travel-eje/bosque-palmas-machin/assets';
-    return `${base}/${path}`;
-  };
+// Slider simple y funcional
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded - Starting enhanced slider');
+  
+  // Detectar si estamos en localhost o GitHub Pages
+  const isLocalhost = window.location.hostname === 'localhost' || 
+                     window.location.hostname === '127.0.0.1' ||
+                     window.location.protocol === 'file:';
+  
+  const basePath = isLocalhost ? '/bosque-palmas-machin/assets/' : '/4x4-travel-eje/bosque-palmas-machin/assets/';
+  
+  // Cargar imágenes estáticas (logos)
+  document.querySelectorAll('img[data-src]').forEach(img => {
+    img.src = basePath + img.dataset.src;
+  });
+  
+  // Enhanced Slider functionality
   const slider = document.querySelector('.hero-background-slider');
-  if (!slider || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!slider) {
+    console.log('Slider element not found');
     return;
   }
 
-  try {
-    // Definir las rutas de las imágenes
-    const images = [
-      getSliderImagePath('images/hero_3.webp'),
-      getSliderImagePath('images/hero_1.webp'),
-      getSliderImagePath('images/hero_2.webp')
-    ];
-    console.log('Slider images:', images);
-
-    // Precargar las imágenes
-    await Promise.all(images.map(src => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => {
-          console.log(`Image loaded successfully: ${src}`);
-          resolve();
-        };
-        img.onerror = () => {
-          console.error(`Failed to load image: ${src}`);
-          reject(new Error(`Failed to load image: ${src}`));
-        };
-        img.src = src;
-      });
-    }));
-
-    console.log('All slider images loaded successfully');
-
-    // Iniciar el slider
-    let idx = 0;
-    const setBg = () => {
-      const imageUrl = images[idx % images.length];
-      console.log('Setting background to:', imageUrl);
-      slider.style.backgroundImage = `url(${imageUrl})`;
-      idx += 1;
-    };
-
-    setBg(); // Establecer la primera imagen
-    setInterval(setBg, 6000);
-  } catch (error) {
-    console.error('Error initializing slider:', error);
-  }
-};
-
-// Función principal de inicialización
-const init = async () => {
-  console.log('Initializing app...');
+  // Imágenes del slider
+  const images = [
+    'images/hero_3.webp',
+    'images/hero_1.webp', 
+    'images/hero_2.webp'
+  ];
   
-  try {
-    // Inicializar el slider primero
-    await initSlider();
-    console.log('Slider initialized successfully');
-
-    // Cargar configuración después
-    if (typeof ExpeditionConfig !== 'undefined') {
-      const config = new ExpeditionConfig();
-      await config.loadConfig();
-      config.updatePageContent();
-      console.log('Config loaded successfully');
-    }
-  } catch (error) {
-    console.error('Initialization error:', error);
-  }
-};
-
-// Esperar a que el DOM esté listo
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM loaded, starting initialization...');
-  init();
-
-  // Mobile menu functionality
-  const nav = document.querySelector('.main-nav');
-  const toggle = document.querySelector('.menu-toggle');
+  let currentIndex = 0;
+  let isTransitioning = false;
   
-  console.log('Nav element:', nav);
-  console.log('Toggle element:', toggle);
-  
-  if (toggle && nav) {
-    console.log('Adding click listener to toggle');
-    toggle.addEventListener('click', (e) => {
-      console.log('Toggle clicked!');
-      e.preventDefault();
-      e.stopPropagation();
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('open');
-      console.log('Menu toggled, open class:', nav.classList.contains('open'));
-    });
-  } else {
-    console.log('Toggle or nav not found!');
+  function changeImage() {
+    if (isTransitioning) return;
+    
+    isTransitioning = true;
+    const imagePath = basePath + images[currentIndex];
+    console.log('Setting background to:', imagePath);
+    
+    // Fade out current image
+    slider.style.opacity = '0';
+    
+    setTimeout(() => {
+      // Change background image
+      slider.style.backgroundImage = `url('${imagePath}')`;
+      
+      // Fade in new image
+      slider.style.opacity = '0.7';
+      
+      // Update index
+      currentIndex = (currentIndex + 1) % images.length;
+      
+      // Reset transition flag after animation completes
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 500);
+    }, 300);
   }
-
+  
+  // Establecer la primera imagen inmediatamente
+  const firstImagePath = basePath + images[0];
+  slider.style.backgroundImage = `url('${firstImagePath}')`;
+  slider.style.opacity = '0.7';
+  
+  // Cambiar imagen cada 6 segundos
+  setInterval(changeImage, 6000);
+  
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
@@ -112,29 +75,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!el) return;
       e.preventDefault();
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Close mobile menu when clicking a link
-      if (nav && nav.classList.contains('open') && toggle) {
-        nav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
     });
   });
-
-  // Hero background slider
-  const slider = document.querySelector('.hero-background-slider');
-  if (slider && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const images = [
-      'assets/images/hero_3.webp',
-      'assets/images/hero_1.webp',
-      'assets/images/hero_2.webp'
-    ];
-    let idx = 0;
-    const setBg = () => {
-      slider.style.backgroundImage = `url(${images[idx % images.length]})`;
-      idx += 1;
-    };
-    setBg();
-    setInterval(setBg, 6000);
+  
+  // Cargar configuración si está disponible
+  if (typeof ExpeditionConfig !== 'undefined') {
+    try {
+      const config = new ExpeditionConfig();
+      config.loadConfig().then(() => {
+        config.updatePageContent();
+        console.log('Config loaded successfully');
+      }).catch(error => {
+        console.error('Error loading config:', error);
+      });
+    } catch (error) {
+      console.error('Error initializing ExpeditionConfig:', error);
+    }
   }
-
 });
