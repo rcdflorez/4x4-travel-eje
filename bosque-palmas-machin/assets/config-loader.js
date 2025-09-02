@@ -5,8 +5,7 @@ class ExpeditionConfig {
   }
 
   getBasePath() {
-    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    return isLocalhost ? '/bosque-palmas-machin' : '/4x4-travel-eje/bosque-palmas-machin';
+    return '/4x4-travel-eje/bosque-palmas-machin';
   }
 
   async loadConfig() {
