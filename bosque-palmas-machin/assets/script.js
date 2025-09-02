@@ -111,6 +111,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Gallery Image Loading System
   initializeGalleryImages();
+  
+  // Initialize Countdown Timer
+  initializeCountdownTimer();
+  
+  // Initialize Sticky CTA Behavior
+  initializeStickyCTA();
 });
 
 // Gallery Image Loading - Static Images with WebP Support
@@ -403,4 +409,150 @@ function initializeSmoothScrolling() {
   }
   
   console.log('Enhanced smooth scrolling initialized');
+}
+
+// Countdown Timer System
+function initializeCountdownTimer() {
+  console.log('Initializing countdown timer');
+  
+  // Fecha límite: 15 de noviembre de 2025
+  const deadline = new Date('November 15, 2025 23:59:59').getTime();
+  
+  // Elementos del countdown
+  const daysElement = document.getElementById('countdown-days');
+  const hoursElement = document.getElementById('countdown-hours');
+  const minutesElement = document.getElementById('countdown-minutes');
+  const secondsElement = document.getElementById('countdown-seconds');
+  
+  if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+    console.error('Countdown elements not found');
+    return;
+  }
+  
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const timeLeft = deadline - now;
+    
+    // Si ya pasó la fecha límite
+    if (timeLeft < 0) {
+      daysElement.textContent = '00';
+      hoursElement.textContent = '00';
+      minutesElement.textContent = '00';
+      secondsElement.textContent = '00';
+      
+      // Ocultar countdown y mostrar mensaje de cierre
+      const urgencyContainer = document.querySelector('.urgency-container');
+      if (urgencyContainer) {
+        urgencyContainer.innerHTML = `
+          <div class="spots-urgency">
+            <div class="spots-counter-large">
+              <div class="counter-number-large">🔒</div>
+              <div class="counter-label-large">Inscripciones Cerradas</div>
+            </div>
+            <div class="urgency-message">
+              <p class="spots-left">El período de inscripción ha finalizado</p>
+              <p class="guarantee">¡Gracias por tu interés en nuestra expedición!</p>
+            </div>
+          </div>
+          
+          <div class="unified-cta">
+            <p class="urgency-text">Mantente atento a nuestras próximas aventuras</p>
+            <a class="btn btn-secondary" href="https://www.instagram.com/4x4traveleje/" target="_blank" rel="noopener noreferrer">
+              Síguenos en Instagram →
+            </a>
+          </div>
+        `;
+        urgencyContainer.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(185, 28, 28, 0.08))';
+      }
+      return;
+    }
+    
+    // Calcular días, horas, minutos y segundos
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    
+    // Actualizar elementos con formato de dos dígitos
+    daysElement.textContent = days.toString().padStart(2, '0');
+    hoursElement.textContent = hours.toString().padStart(2, '0');
+    minutesElement.textContent = minutes.toString().padStart(2, '0');
+    secondsElement.textContent = seconds.toString().padStart(2, '0');
+    
+    // Efecto de pulso cuando quedan menos de 24 horas
+    if (days === 0 && hours < 24) {
+      const urgencyContainer = document.querySelector('.urgency-container');
+      if (urgencyContainer) {
+        urgencyContainer.style.animation = 'countdownPulse 1s ease-in-out infinite';
+        urgencyContainer.style.background = 'linear-gradient(135deg, rgba(220, 38, 38, 0.12), rgba(185, 28, 28, 0.12))';
+      }
+    }
+    
+    // Efecto de pulso cuando quedan menos de 1 hora
+    if (days === 0 && hours === 0 && minutes < 60) {
+      const urgencyContainer = document.querySelector('.urgency-container');
+      if (urgencyContainer) {
+        urgencyContainer.style.animation = 'countdownPulse 0.5s ease-in-out infinite';
+      }
+    }
+  }
+  
+  // Actualizar countdown cada segundo
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  
+  console.log('Countdown timer initialized');
+}
+
+// Sticky CTA Behavior System
+function initializeStickyCTA() {
+  console.log('Initializing sticky CTA behavior');
+  
+  const stickyCTA = document.querySelector('.sticky-whatsapp-cta');
+  const footer = document.querySelector('.footer-section');
+  
+  if (!stickyCTA || !footer) {
+    console.error('Sticky CTA or footer not found');
+    return;
+  }
+  
+  function handleStickyCTA() {
+    const footerTop = footer.offsetTop;
+    const windowBottom = window.pageYOffset + window.innerHeight;
+    const ctaHeight = stickyCTA.offsetHeight;
+    
+    // Si estamos cerca del footer, ocultar el CTA
+    if (windowBottom > footerTop - ctaHeight - 20) {
+      stickyCTA.style.opacity = '0';
+      stickyCTA.style.transform = 'translateY(20px)';
+      stickyCTA.style.pointerEvents = 'none';
+    } else {
+      stickyCTA.style.opacity = '1';
+      stickyCTA.style.transform = 'translateY(0)';
+      stickyCTA.style.pointerEvents = 'auto';
+    }
+  }
+  
+  // Escuchar scroll para manejar visibilidad del CTA
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(handleStickyCTA);
+  });
+  
+  // Manejar resize de ventana
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(handleStickyCTA);
+  });
+  
+  // Agregar efecto de click al CTA
+  stickyCTA.addEventListener('click', (e) => {
+    if (e.target.closest('.sticky-whatsapp-btn')) {
+      // Efecto de click
+      stickyCTA.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        stickyCTA.style.transform = 'scale(1)';
+      }, 150);
+    }
+  });
+  
+  console.log('Sticky CTA behavior initialized');
 }

@@ -53,6 +53,455 @@ a[href^="#"]:hover {
   transform: scaleX(1);
 }
 
+/* Sticky WhatsApp CTA */
+.sticky-whatsapp-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border-radius: 50px;
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: stickyCtaFloat 3s ease-in-out infinite;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sticky-whatsapp-cta:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+}
+
+.sticky-cta-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: white;
+}
+
+.sticky-cta-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sticky-cta-title {
+  font-weight: var(--font-bold);
+  font-size: 14px;
+}
+
+.sticky-cta-subtitle {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.sticky-whatsapp-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 25px;
+  color: white;
+  text-decoration: none;
+  font-weight: var(--font-semibold);
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sticky-whatsapp-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
+.sticky-whatsapp-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Urgency Container - Fusionado */
+.urgency-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin: 48px 0;
+  padding: 32px;
+  background: linear-gradient(135deg, rgba(255, 122, 26, 0.08), rgba(22, 163, 74, 0.08));
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 122, 26, 0.15);
+}
+
+/* Spots Urgency - Lado Izquierdo */
+.spots-urgency {
+  text-align: center;
+}
+
+.spots-counter-large {
+  margin-bottom: 24px;
+}
+
+.counter-number-large {
+  font-size: 4rem;
+  font-weight: var(--font-bold);
+  color: var(--brand);
+  line-height: 1;
+  text-shadow: 0 4px 8px rgba(255, 122, 26, 0.3);
+}
+
+.counter-label-large {
+  font-size: 1.2rem;
+  font-weight: var(--font-semibold);
+  color: var(--text);
+  margin-top: 8px;
+}
+
+.urgency-message {
+  text-align: center;
+}
+
+.spots-left {
+  font-size: 1.3rem;
+  font-weight: var(--font-semibold);
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.guarantee {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: var(--font-medium);
+}
+
+/* Countdown Section - Lado Derecho */
+.countdown-section {
+  text-align: center;
+}
+
+.countdown-header h3 {
+  font-size: 1.8rem;
+  font-weight: var(--font-bold);
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.countdown-subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-weight: var(--font-medium);
+}
+
+.countdown-display {
+  margin: 24px 0;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  border-radius: 10px;
+  padding: 16px 8px;
+  box-shadow: 0 6px 24px rgba(255, 122, 26, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.countdown-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255, 122, 26, 0.35);
+}
+
+.countdown-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.countdown-item:hover::before {
+  transform: translateX(100%);
+}
+
+.countdown-number {
+  font-size: 1.8rem;
+  font-weight: var(--font-bold);
+  line-height: 1;
+  margin-bottom: 6px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-label {
+  font-size: 0.75rem;
+  font-weight: var(--font-medium);
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Unified CTA */
+.unified-cta {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 122, 26, 0.2);
+}
+
+.unified-cta .urgency-text {
+  font-size: 1.2rem;
+  font-weight: var(--font-semibold);
+  color: var(--text);
+  margin-bottom: 24px;
+  display: block;
+}
+
+.unified-cta .btn {
+  font-size: 1.1rem;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Countdown Timer (flotante - removido) */
+.countdown-timer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(255, 122, 26, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px;
+  color: white;
+  min-width: 280px;
+  animation: countdownPulse 2s ease-in-out infinite;
+}
+
+.countdown-content {
+  text-align: center;
+}
+
+.countdown-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: var(--font-medium);
+  margin-bottom: 8px;
+}
+
+.countdown-icon {
+  font-size: 16px;
+}
+
+.countdown-date {
+  font-size: 16px;
+  font-weight: var(--font-bold);
+  margin-bottom: 16px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.countdown-number {
+  font-size: 18px;
+  font-weight: var(--font-bold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.countdown-label {
+  font-size: 10px;
+  font-weight: var(--font-medium);
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.countdown-urgency {
+  margin-top: 8px;
+}
+
+.urgency-text {
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Animaciones */
+@keyframes stickyCtaFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes countdownPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Benefit Items Responsive */
+@media (max-width: 768px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  
+  .benefit-item {
+    padding: 20px;
+  }
+  
+  .benefit-item .btn {
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 14px 24px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sticky-whatsapp-cta {
+    bottom: 15px;
+    right: 15px;
+    left: 15px;
+    border-radius: 25px;
+  }
+  
+  .sticky-cta-content {
+    justify-content: center;
+    padding: 10px 16px;
+  }
+  
+  .sticky-cta-text {
+    text-align: center;
+  }
+  
+  /* Urgency Container Responsive */
+  .urgency-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 24px 16px;
+    margin: 32px 0;
+  }
+  
+  .counter-number-large {
+    font-size: 3rem;
+  }
+  
+  .counter-label-large {
+    font-size: 1rem;
+  }
+  
+  .spots-left {
+    font-size: 1.1rem;
+  }
+  
+  /* Countdown Section Responsive */
+  .countdown-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  .countdown-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .countdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 300px;
+  }
+  
+  .countdown-item {
+    padding: 14px 6px;
+  }
+  
+  .countdown-number {
+    font-size: 1.5rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.7rem;
+  }
+  
+  .unified-cta {
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+  
+  .unified-cta .urgency-text {
+    font-size: 1rem;
+  }
+  
+  .unified-cta .btn {
+    font-size: 1rem;
+    padding: 14px 28px;
+  }
+  
+  /* Countdown Timer (flotante - removido) */
+  .countdown-timer {
+    top: 15px;
+    right: 15px;
+    left: 15px;
+    min-width: auto;
+  }
+  
+  .countdown-grid {
+    gap: 6px;
+  }
+  
+  .countdown-number {
+    font-size: 16px;
+  }
+  
+  .countdown-label {
+    font-size: 9px;
+  }
+}
+
 /* Base styles placeholder; will be filled later */
 :root {
   --bg: #0b0f14;
@@ -336,16 +785,39 @@ p {
   margin-top: 48px;
   padding: 0 16px;
 }
-.feature-item, .benefit-item { 
+
+/* Feature Items - Para contenido con título y descripción */
+.feature-item { 
   background: linear-gradient(180deg, rgba(255,122,26,0.1), rgba(255,122,26,0.03));
   border: 1px solid rgba(255,122,26,0.25); 
   padding: 32px 24px; 
   border-radius: var(--radius);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.feature-item:hover, .benefit-item:hover { 
+
+.feature-item:hover { 
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(255,122,26,0.15);
+}
+
+/* Benefit Items - Para botones de acción simples */
+.benefit-item { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-radius: var(--radius);
+  transition: transform 0.3s ease;
+}
+
+.benefit-item:hover { 
+  transform: translateY(-2px);
+}
+
+.benefit-item .btn {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
 }
 .feature-item h3 { 
   color: var(--brand);
