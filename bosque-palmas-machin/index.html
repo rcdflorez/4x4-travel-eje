@@ -15,13 +15,45 @@
   <meta name="twitter:title" content="Expedición Bosque de Palmas & Cerro Volcán Machín | 21-23 Nov 2025 | 4X4 Travel Eje" />
   <meta name="twitter:description" content="Vive un fin de semana 4x4 con paisajes únicos, termales y ascenso al volcán Machín. Cupos limitados." />
   <meta name="twitter:image" content="/4x4-travel-eje/bosque-palmas-machin/assets/images/sharing.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/4x4-travel-eje/bosque-palmas-machin/assets/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/4x4-travel-eje/bosque-palmas-machin/assets/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/4x4-travel-eje/bosque-palmas-machin/assets/images/favicon-16x16.png">
-  <link rel="preload" as="image" href="/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_3.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_1.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_2.webp" fetchpriority="high">
-  <link rel="stylesheet" href="/4x4-travel-eje/bosque-palmas-machin/assets/style.css">
+  <script>
+    // Configuración de rutas
+    window.pathConfig = {
+      isLocalhost: () => window.location.hostname === 'localhost' || 
+                        window.location.hostname === '127.0.0.1' ||
+                        window.location.protocol === 'file:',
+      getBasePath: function() {
+        return this.isLocalhost() ? '/bosque-palmas-machin' : '/4x4-travel-eje/bosque-palmas-machin';
+      },
+      getAssetsPath: function() {
+        return `${this.getBasePath()}/assets`;
+      }
+    };
+
+    // Función para generar rutas dinámicas
+    function getAssetPath(path) {
+      return `${window.pathConfig.getAssetsPath()}/${path}`;
+    }
+
+    // Agregar enlaces dinámicamente
+    const head = document.head;
+    const assets = [
+      { rel: 'apple-touch-icon', sizes: '180x180', href: 'images/apple-touch-icon.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'images/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'images/favicon-16x16.png' },
+      { rel: 'preload', as: 'image', href: 'images/hero_3.webp', fetchpriority: 'high' },
+      { rel: 'preload', as: 'image', href: 'images/hero_1.webp', fetchpriority: 'high' },
+      { rel: 'preload', as: 'image', href: 'images/hero_2.webp', fetchpriority: 'high' },
+      { rel: 'stylesheet', href: 'style.css' }
+    ];
+
+    assets.forEach(asset => {
+      const link = document.createElement('link');
+      Object.entries(asset).forEach(([key, value]) => {
+        link[key] = key === 'href' ? getAssetPath(value) : value;
+      });
+      head.appendChild(link);
+    });
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -78,7 +110,7 @@
     <div class="hero-background-slider"></div>
     <div class="hero-content container">
       <div class="hero-logo">
-        <img src="/4x4-travel-eje/bosque-palmas-machin/assets/images/4x4travelejelogo.png" alt="4X4 Travel Eje logo">
+        <img src="" alt="4X4 Travel Eje logo" data-src="images/4x4travelejelogo.png">
       </div>
       <div class="expedition-badge">Expedición 4x4</div>
       <div class="hero-title">
@@ -242,7 +274,7 @@
   </main>
 
   <footer class="footer-section">
-    <img src="/4x4-travel-eje/bosque-palmas-machin/assets/images/4x4travelejelogo.png" loading="lazy" alt="4X4 Travel Eje Logo" class="footer-logo">
+    <img src="" loading="lazy" alt="4X4 Travel Eje Logo" class="footer-logo" data-src="images/4x4travelejelogo.png">
     <p>4X4 Travel Eje - Aventuras 4x4 en Colombia</p>
     <div class="contact-info">
       <ul class="icons">
@@ -252,14 +284,29 @@
     <p class="copyright">© 2025 4X4 Travel Eje. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="/4x4-travel-eje/bosque-palmas-machin/assets/config-loader.js"></script>
   <script>
+    // Cargar config-loader.js dinámicamente
+    const configLoaderScript = document.createElement('script');
+    configLoaderScript.src = window.pathConfig.getAssetsPath() + '/config-loader.js';
+    document.body.appendChild(configLoaderScript);
+  </script>
+  <script>
+    // Cargar imágenes dinámicamente
+    function loadImages() {
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        img.src = getAssetPath(img.dataset.src);
+      });
+    }
+
     // Inicializar la configuración antes de cargar el script principal
     window.expeditionConfig = new ExpeditionConfig();
     window.expeditionConfig.loadConfig().then(() => {
+      // Cargar imágenes
+      loadImages();
+      
       // Cargar el script principal después de tener la configuración
       const script = document.createElement('script');
-      script.src = '/4x4-travel-eje/bosque-palmas-machin/assets/script.js';
+      script.src = getAssetPath('script.js');
       document.body.appendChild(script);
     });
   </script>

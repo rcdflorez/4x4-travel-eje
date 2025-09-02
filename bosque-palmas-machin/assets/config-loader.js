@@ -4,8 +4,18 @@ class ExpeditionConfig {
     this.config = null;
   }
 
+  isLocalhost() {
+    return window.location.hostname === 'localhost' || 
+           window.location.hostname === '127.0.0.1' ||
+           window.location.protocol === 'file:';
+  }
+
   getBasePath() {
-    return '/4x4-travel-eje/bosque-palmas-machin';
+    return this.isLocalhost() ? '/bosque-palmas-machin' : '/4x4-travel-eje/bosque-palmas-machin';
+  }
+
+  getAssetsPath() {
+    return `${this.getBasePath()}/assets`;
   }
 
   async loadConfig() {
