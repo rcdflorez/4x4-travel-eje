@@ -121,13 +121,69 @@ a:hover { text-decoration: underline; }
   margin: 0 auto 12px; 
   opacity: 0.95; 
 }
+.expedition-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--brand), #ffb45c);
+  color: #1a0b00;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .hero-title h1 { 
   font-size: clamp(28px, 5vw, 48px); 
-  margin: 0 0 8px; 
+  margin: 0 0 24px;
+  line-height: 1.2;
 }
-.gp-hero-dates { 
-  color: var(--muted); 
-  margin: 0 0 14px; 
+
+.expedition-dates {
+  margin: 0 auto 32px;
+  max-width: 500px;
+}
+
+.date-badge {
+  background: rgba(255,122,26,0.1);
+  border: 1px solid rgba(255,122,26,0.2);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.date-month {
+  color: var(--brand);
+  font-size: 1.2em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.date-days {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.date-year {
+  color: var(--muted);
+  font-size: 1.1em;
+}
+
+.date-description {
+  color: var(--muted);
+  font-size: 1.1em;
+  margin: 0;
+}
+
+.expedition-intro {
+  font-size: 1.15em;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 32px;
+  color: var(--text);
 }
 
 /* Content Sections */
@@ -145,6 +201,37 @@ a:hover { text-decoration: underline; }
   margin: 0 auto 32px; 
   color: var(--muted);
   padding: 0 24px;
+}
+
+.expedition-dates-compact {
+  background: linear-gradient(90deg, rgba(255,122,26,0.15), rgba(255,122,26,0.05));
+  border: 1px solid rgba(255,122,26,0.2);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 0 auto 32px;
+  max-width: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.compact-label {
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.compact-dates {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.compact-duration {
+  color: var(--muted);
+  font-size: 0.95em;
 }
 
 /* Buttons */
