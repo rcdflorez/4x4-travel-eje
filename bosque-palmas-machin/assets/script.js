@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (slider && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const images = [
       '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_1.webp',
-      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_2.webp'
+      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_2.webp',
+      '/4x4-travel-eje/bosque-palmas-machin/assets/images/hero_3.webp'
     ];
     let idx = 0;
     const setBg = () => {
