@@ -73,6 +73,49 @@ a:hover { text-decoration: underline; }
   z-index: 1; 
   text-align: center; 
 }
+
+.hero-cta {
+  margin: 32px 0;
+  padding: 24px;
+  background: rgba(255,122,26,0.1);
+  border: 1px solid rgba(255,122,26,0.2);
+  border-radius: var(--radius);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spots-left {
+  color: var(--brand);
+  font-size: 1.2em;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+
+.spots-left strong {
+  font-size: 1.1em;
+}
+
+.guarantee {
+  color: var(--muted);
+  font-size: 0.9em;
+  margin: 16px 0 0;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.pulse:hover {
+  animation: none;
+  transform: translateY(-2px);
+}
 .hero-logo img { 
   width: 160px; 
   margin: 0 auto 12px; 
@@ -213,27 +256,136 @@ a:hover { text-decoration: underline; }
 }
 
 /* Pricing */
-.pricing-info { 
-  padding: 24px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+.pricing-info {
+  max-width: 800px;
+  margin: 32px auto;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .pricing-info {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.price-highlight {
+  background: linear-gradient(180deg, rgba(255,122,26,0.15), rgba(255,122,26,0.05));
+  padding: 32px;
   border-radius: var(--radius);
-  margin-bottom: 24px;
+  border: 1px solid rgba(255,122,26,0.2);
+  text-align: center;
 }
-.pricing-info ul { 
-  margin: 0 0 16px; 
-  padding-left: 24px; 
-}
-.pricing-info p {
-  margin: 0;
-}
-.payment-info { 
+
+.price-label {
+  display: block;
   color: var(--muted);
-  margin: 24px 0;
-  padding: 24px;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.price-amount {
+  display: block;
+  color: var(--brand);
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.price-note {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.spots-counter {
   background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  padding: 24px;
   border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.counter-label {
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.counter-number {
+  font-size: 1.4em;
+  margin-bottom: 12px;
+  color: var(--brand);
+}
+
+.counter-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.counter-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand), #ffb45c);
+  border-radius: 4px;
+}
+
+.benefits-summary {
+  max-width: 800px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.03);
+  padding: 32px;
+  border-radius: var(--radius);
+}
+
+.benefits-summary h3 {
+  margin: 0 0 24px;
+  color: var(--brand);
+}
+
+.checkmark-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.checkmark-list li {
+  color: var(--text);
+  font-size: 1.1em;
+}
+
+.secure-payment {
+  max-width: 800px;
+  margin: 32px auto;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  padding: 32px;
+  border-radius: var(--radius);
+}
+
+.secure-payment h3 {
+  color: var(--brand);
+  margin: 0 0 16px;
+}
+
+.secure-payment p {
+  margin: 8px 0;
+  color: var(--muted);
+}
+
+.refund-policy {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.cta-urgency {
+  color: var(--muted);
+  margin: 16px 0 0;
+  font-size: 0.9em;
 }
 .cta-actions { 
   display: flex; 
