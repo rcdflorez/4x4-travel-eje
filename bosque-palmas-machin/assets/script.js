@@ -121,48 +121,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Hero background slider
-  const initSlider = async () => {
-    const slider = document.querySelector('.hero-background-slider');
-    if (!slider || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
+  const slider = document.querySelector('.hero-background-slider');
+  if (slider && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const images = [
+      'assets/images/hero_3.webp',
+      'assets/images/hero_1.webp',
+      'assets/images/hero_2.webp'
+    ];
+    let idx = 0;
+    const setBg = () => {
+      slider.style.backgroundImage = `url(${images[idx % images.length]})`;
+      idx += 1;
+    };
+    setBg();
+    setInterval(setBg, 6000);
+  }
 
-    try {
-      // Definir las rutas de las imágenes
-      const images = [
-        getAssetPath('images/hero_3.webp'),
-        getAssetPath('images/hero_1.webp'),
-        getAssetPath('images/hero_2.webp')
-      ];
-      console.log('Slider images:', images);
-
-      // Precargar las imágenes
-      await Promise.all(images.map(src => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.onload = resolve;
-          img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
-          img.src = src;
-        });
-      }));
-
-      console.log('All slider images loaded successfully');
-
-      // Iniciar el slider
-      let idx = 0;
-      const setBg = () => {
-        const imageUrl = images[idx % images.length];
-        console.log('Setting background to:', imageUrl);
-        slider.style.backgroundImage = `url(${imageUrl})`;
-        idx += 1;
-      };
-
-      setBg(); // Establecer la primera imagen
-      setInterval(setBg, 6000);
-    } catch (error) {
-      console.error('Error initializing slider:', error);
-    }
-  };
-
-});
 });
