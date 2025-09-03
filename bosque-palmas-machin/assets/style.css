@@ -164,6 +164,11 @@ a[href^="#"]:hover {
 
 .urgency-message {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  min-height: 120px;
 }
 
 .spots-left {
@@ -280,12 +285,10 @@ a[href^="#"]:hover {
 }
 
 .unified-cta .btn {
-  font-size: 1.1rem;
+  /* Usar estilos estándar del botón primario */
+  font-size: 1.1em;
   padding: 16px 32px;
-  border-radius: 50px;
-  font-weight: var(--font-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  /* Mantener border-radius estándar y sin text-transform */
 }
 
 /* Countdown Timer (flotante - removido) */
@@ -507,6 +510,7 @@ a[href^="#"]:hover {
   }
   
   .unified-cta .btn {
+    /* Mantener consistencia con otros botones en responsive */
     font-size: 1rem;
     padding: 14px 28px;
   }
@@ -1348,56 +1352,3 @@ p {
   }
 }
 
-/* Spots Urgency Section */
-.spots-urgency {
-  max-width: 800px;
-  margin: 40px auto;
-  display: grid;
-  gap: 32px;
-  grid-template-columns: 1fr;
-  align-items: center;
-}
-
-@media (min-width: 768px) {
-  .spots-urgency {
-    grid-template-columns: 1fr 2fr;
-  }
-}
-
-.spots-counter-large {
-  text-align: center;
-  background: linear-gradient(180deg, rgba(255,122,26,0.15), rgba(255,122,26,0.05));
-  border: 2px solid rgba(255,122,26,0.3);
-  border-radius: var(--radius);
-  padding: 32px;
-  box-shadow: 0 8px 24px rgba(255,122,26,0.1);
-}
-
-.counter-number-large {
-  font-size: 4em;
-  font-weight: bold;
-  color: var(--brand);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.counter-label-large {
-  color: var(--muted);
-  font-size: 1.2em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.urgency-message {
-  text-align: center;
-}
-
-.urgency-message .spots-left {
-  font-size: 1.4em;
-  margin-bottom: 24px;
-}
-
-.urgency-message .guarantee {
-  margin-top: 16px;
-  font-size: 1em;
-}

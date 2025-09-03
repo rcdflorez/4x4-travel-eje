@@ -46,6 +46,7 @@
       // Preload crítico solo para la primera imagen hero
       { rel: 'preload', as: 'image', href: 'images/hero_1.webp', fetchpriority: 'high' },
       { rel: 'preload', as: 'image', href: 'images/logo/logo-final.png', fetchpriority: 'high' },
+      { rel: 'stylesheet', href: 'design-system.css' },
       { rel: 'stylesheet', href: 'style.css' }
     ];
 
@@ -99,312 +100,320 @@
   <div class="scroll-indicator"></div>
 
 
-  <section id="inicio" class="hero-section">
+  <section id="inicio" class="hero-section pt-xxl pb-xl">
     <div class="hero-background-slider"></div>
     <div class="hero-content container">
-              <div class="hero-logo">
-            <picture>
-                <source srcset="" type="image/webp" data-srcset="images/logo/logo-final.webp">
-                <img src="" alt="4X4 Travel Eje logo" data-src="images/logo/logo-final.png" loading="lazy" decoding="async">
-            </picture>
-        </div>
+      <div class="hero-logo mb-l">
+        <picture>
+          <source srcset="" type="image/webp" data-srcset="images/logo/logo-final.webp">
+          <img src="" alt="4X4 Travel Eje logo" data-src="images/logo/logo-final.png" loading="lazy" decoding="async">
+        </picture>
+      </div>
     
-      <div class="hero-title">
+      <div class="hero-title mb-m">
         <h1>Expedición Bosque de Palmas & Cerro Volcán Machín</h1>
       </div>
-      <div class="expedition-dates">
-        <div class="date-badge">
+      <div class="expedition-dates mb-l">
+        <div class="date-badge p-m">
           <div class="date-days">Viernes 21 - Domingo 23</div>
           <div class="date-month">Noviembre</div>
           <div class="date-year">2025</div>
         </div>
-        
       </div>
-      <p class="expedition-intro">Una aventura única a través de paisajes espectaculares, termales volcánicos y el majestuoso bosque de palmas más grande del mundo. Cupos limitados a 10 vehículos.</p>
+      <p class="expedition-intro mb-xl">Una aventura única a través de paisajes espectaculares, termales volcánicos y el majestuoso bosque de palmas más grande del mundo. Cupos limitados a 10 vehículos.</p>
 
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <a href="#incluye" class="btn btn-secondary">Ver todo lo que incluye →</a>
+              <div class="benefits-grid gap-m">
+          <div class="benefit-item p-m">
+            <a href="#incluye" class="btn btn-secondary">Ver todo lo que incluye →</a>
+          </div>
+          <div class="benefit-item p-m">
+            <a href="#itinerario" class="btn btn-secondary">Itinerario completo →</a>
+          </div>
         </div>
-        <div class="benefit-item">
-          <a href="#itinerario" class="btn btn-secondary">Itinerario completo →</a>
-        </div>
-      </div>
     </div>
   </section>
 
   <main class="gp-page-container">
-    <section id="aventura" class="content-section text-center">
-      <h2>Vive la aventura en el corazón de los Andes</h2>
-      <p class="section-intro">Desde Salento hasta Cajamarca, recorremos el Camino Nacional hacia Toche, visitamos un bosque con más de 700 mil palmas de cera, disfrutamos de aguas termales volcánicas y coronamos con un ascenso en trocha al Cerro Machín.</p>
-      <div class="features-grid">
-        <div class="feature-item">
-          <h3>Paisajes Únicos</h3>
-          <p>El bosque de palmas más grande del mundo, aguas termales volcánicas y vistas panorámicas de los Andes.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Ambiente Familiar</h3>
-          <p>Expedición diseñada para aventureros desde 12 años, con guías expertos y protocolos de seguridad.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Experiencia VIP</h3>
-          <p>Grupo selecto de 10 vehículos, atención personalizada y alojamiento premium en Salento.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Aventura Guiada</h3>
-          <p>Equipo profesional con amplia experiencia en rutas 4x4, asistencia mecánica y comunicación permanente.</p>
+    <section id="aventura" class="content-section text-center pt-xxl pb-xl">
+      <div class="container">
+        <h2 class="section-title mb-m">Vive la aventura en el corazón de los Andes</h2>
+        <p class="section-intro mb-xl">Desde Salento hasta Cajamarca, recorremos el Camino Nacional hacia Toche, visitamos un bosque con más de 700 mil palmas de cera, disfrutamos de aguas termales volcánicas y coronamos con un ascenso en trocha al Cerro Machín.</p>
+        
+        <div class="features-grid gap-l">
+          <div class="feature-item p-l">
+            <h3 class="feature-title mb-s">Paisajes Únicos</h3>
+            <p class="feature-description">El bosque de palmas más grande del mundo, aguas termales volcánicas y vistas panorámicas de los Andes.</p>
+          </div>
+          <div class="feature-item p-l">
+            <h3 class="feature-title mb-s">Ambiente Familiar</h3>
+            <p class="feature-description">Expedición diseñada para aventureros desde 12 años, con guías expertos y protocolos de seguridad.</p>
+          </div>
+          <div class="feature-item p-l">
+            <h3 class="feature-title mb-s">Experiencia VIP</h3>
+            <p class="feature-description">Grupo selecto de 10 vehículos, atención personalizada y alojamiento premium en Salento.</p>
+          </div>
+          <div class="feature-item p-l">
+            <h3 class="feature-title mb-s">Aventura Guiada</h3>
+            <p class="feature-description">Equipo profesional con amplia experiencia en rutas 4x4, asistencia mecánica y comunicación permanente.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="itinerario" class="content-section section-colored">
-      <h2>Itinerario día a día</h2>
-      <div class="itinerary-container">
-        <details class="itinerary-day" open>
-          <summary>Viernes: Llegada a Salento — Cena de Integración</summary>
-          <div class="itinerary-content">
-            <p><strong>15:00 - 17:00:</strong> Llegada a Salento y check-in en uno de los mejores hoteles de la región. Tiempo libre para explorar el pueblo mágico y sus calles coloridas.</p>
-            <p><strong>19:00 - 21:00:</strong> Cena de integración en restaurante local. Conoce a tu equipo de aventureros y guías. Charla sobre la expedición y preparativos para el día siguiente.</p>
-            <p><strong>21:00:</strong> Descanso y preparación para la aventura del sábado.</p>
-          </div>
-        </details>
-        <details class="itinerary-day">
-          <summary>Sábado: Salento — Toche — Termales</summary>
-          <div class="itinerary-content">
-            <p><strong>07:00 - 08:00:</strong> Desayuno en el hotel y preparación de vehículos.</p>
-            <p><strong>08:30:</strong> Salida desde Salento hacia el Camino Nacional. Inicio de la aventura 4x4 por rutas de montaña.</p>
-            <p><strong>10:30 - 11:30:</strong> Parada técnica y fotográfica en miradores del Valle del Cocora.</p>
-            <p><strong>12:00 - 14:00:</strong> Almuerzo en finca rodeada por el majestuoso bosque de más de 700 mil palmas de cera. Experiencia única en el mundo.</p>
-            <p><strong>14:30 - 16:00:</strong> Continuación del recorrido hacia Toche por caminos de montaña.</p>
-            <p><strong>16:30 - 18:30:</strong> Llegada a Toche y tarde de relajación en las aguas termales del volcán. Experiencia de bienestar en medio de la naturaleza.</p>
-            <p><strong>19:00:</strong> Cena y pernocta en Toche.</p>
-          </div>
-        </details>
-        <details class="itinerary-day">
-          <summary>Domingo: Ascenso Cerro Machín — Cajamarca</summary>
-          <div class="itinerary-content">
-            <p><strong>07:00 - 08:00:</strong> Desayuno y preparación para el ascenso.</p>
-            <p><strong>08:30 - 10:30:</strong> Ascenso en trocha 4x4 hasta el volcán Machín. Recorrido por senderos de montaña con vistas panorámicas espectaculares.</p>
-            <p><strong>10:30 - 12:00:</strong> Exploración de miradores y puntos de interés en el volcán. Fotografías profesionales de la experiencia.</p>
-            <p><strong>12:00 - 13:00:</strong> Descenso hacia Cajamarca por rutas alternativas.</p>
-            <p><strong>13:30:</strong> Llegada a Cajamarca. Cierre de la expedición y despedida del grupo.</p>
-          </div>
-        </details>
-      </div>
-      
-      <div class="itinerary-cta">
-        <h3>¿Listo para vivir esta aventura?</h3>
-        <p>Este itinerario te llevará por los paisajes más impresionantes de los Andes colombianos, con experiencias únicas que recordarás para siempre.</p>
-        <a class="btn btn-primary" href="https://wa.me/573045374705?text=Quiero%20inscribirme%20a%20la%20Expedici%C3%B3n%20Bosque%20de%20Palmas%20%26%20Cerro%20Volc%C3%A1n%20Mach%C3%ADn%20(21-23%20Nov%202025)" target="_blank" rel="noopener noreferrer">
-          ¡Reserva tu cupo ahora! →
-        </a>
-      </div>
-    </section>
-
-    <section id="incluye" class="content-section">
-      <div class="inclusion-grid">
-        <div class="inclusion-column includes">
-          <h2>¿Qué incluye?</h2>
-          <ul>
-            <li>Guías profesionales</li>
-            <li>Equipo de comunicación</li>
-            <li>Kit de stickers de expedición</li>
-            <li>Prenda de aventura</li>
-            <li>1 noche de hospedaje premium en Salento</li>
-            <li>1 noche de hospedaje en Toche</li>
-            <li>Alimentación sábado y domingo</li>
-            <li>Asistencia mecánica y primeros auxilios</li>
-            <li>Seguro de asistencia</li>
-            <li>Fotografía y video profesional</li>
-          </ul>
+    <section id="itinerario" class="content-section section-colored pt-xxl pb-xl">
+      <div class="container">
+        <h2 class="section-title mb-m">Itinerario día a día</h2>
+        
+        <div class="itinerary-container mb-xl">
+          <details class="itinerary-day p-m" open>
+            <summary class="mb-s">Viernes: Llegada a Salento — Cena de Integración</summary>
+            <div class="itinerary-content">
+              <p class="mb-s"><strong>15:00 - 17:00:</strong> Llegada a Salento y check-in en uno de los mejores hoteles de la región. Tiempo libre para explorar el pueblo mágico y sus calles coloridas.</p>
+              <p class="mb-s"><strong>19:00 - 21:00:</strong> Cena de integración en restaurante local. Conoce a tu equipo de aventureros y guías. Charla sobre la expedición y preparativos para el día siguiente.</p>
+              <p><strong>21:00:</strong> Descanso y preparación para la aventura del sábado.</p>
+            </div>
+          </details>
+          <details class="itinerary-day p-m">
+            <summary class="mb-s">Sábado: Salento — Toche — Termales</summary>
+            <div class="itinerary-content">
+              <p class="mb-s"><strong>07:00 - 08:00:</strong> Desayuno en el hotel y preparación de vehículos.</p>
+              <p class="mb-s"><strong>08:30:</strong> Salida desde Salento hacia el Camino Nacional. Inicio de la aventura 4x4 por rutas de montaña.</p>
+              <p class="mb-s"><strong>10:30 - 11:30:</strong> Parada técnica y fotográfica en miradores del Valle del Cocora.</p>
+              <p class="mb-s"><strong>12:00 - 14:00:</strong> Almuerzo en finca rodeada por el majestuoso bosque de más de 700 mil palmas de cera. Experiencia única en el mundo.</p>
+              <p class="mb-s"><strong>14:30 - 16:00:</strong> Continuación del recorrido hacia Toche por caminos de montaña.</p>
+              <p class="mb-s"><strong>16:30 - 18:30:</strong> Llegada a Toche y tarde de relajación en las aguas termales del volcán. Experiencia de bienestar en medio de la naturaleza.</p>
+              <p><strong>19:00:</strong> Cena y pernocta en Toche.</p>
+            </div>
+          </details>
+          <details class="itinerary-day p-m">
+            <summary class="mb-s">Domingo: Ascenso Cerro Machín — Cajamarca</summary>
+            <div class="itinerary-content">
+              <p class="mb-s"><strong>07:00 - 08:00:</strong> Desayuno y preparación para el ascenso.</p>
+              <p class="mb-s"><strong>08:30 - 10:30:</strong> Ascenso en trocha 4x4 hasta el volcán Machín. Recorrido por senderos de montaña con vistas panorámicas espectaculares.</p>
+              <p class="mb-s"><strong>10:30 - 12:00:</strong> Exploración de miradores y puntos de interés en el volcán. Fotografías profesionales de la experiencia.</p>
+              <p class="mb-s"><strong>12:00 - 13:00:</strong> Descenso hacia Cajamarca por rutas alternativas.</p>
+              <p><strong>13:30:</strong> Llegada a Cajamarca. Cierre de la expedición y despedida del grupo.</p>
+            </div>
+          </details>
         </div>
-        <div class="inclusion-column excludes">
-          <h2>No incluye</h2>
-          <ul>
-            <li>Vehículo y combustible</li>
-            <li>Cena de integración del viernes</li>
-            <li>Gastos personales y no especificados</li>
-          </ul>
+        
+        <div class="itinerary-cta p-xl">
+          <h3 class="mb-s">¿Listo para vivir esta aventura?</h3>
+          <p class="mb-l">Este itinerario te llevará por los paisajes más impresionantes de los Andes colombianos, con experiencias únicas que recordarás para siempre.</p>
+                      <a class="btn btn-primary" href="https://wa.me/573045374705?text=Quiero%20inscribirme%20a%20la%20Expedici%C3%B3n%20Bosque%20de%20Palmas%20%26%20Cerro%20Volc%C3%A1n%20Mach%C3%ADn%20(21-23%20Nov%202025)" target="_blank" rel="noopener noreferrer">
+              ¡Reserva tu cupo ahora! →
+            </a>
         </div>
       </div>
     </section>
 
-    <section id="galeria" class="content-section">
-      <h2>Galería de Expediciones Anteriores</h2>
-      <p class="section-intro">Descubre las experiencias reales de nuestros aventureros en expediciones pasadas. Estas imágenes te darán una idea de lo que vivirás en esta expedición única.</p>
-      
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <div class="gallery-preview">
-            <picture>
+    <section id="incluye" class="content-section pt-xxl pb-xl">
+      <div class="container">
+        <h2 class="section-title mb-xl text-center">¿Qué incluye tu expedición?</h2>
+        
+        <div class="inclusion-grid gap-l">
+          <div class="inclusion-column includes p-l">
+            <h3 class="feature-title mb-m">✅ Incluye</h3>
+            <ul class="gap-s">
+              <li class="mb-s">Guías profesionales</li>
+              <li class="mb-s">Equipo de comunicación</li>
+              <li class="mb-s">Kit de stickers de expedición</li>
+              <li class="mb-s">Prenda de aventura</li>
+              <li class="mb-s">1 noche de hospedaje premium en Salento</li>
+              <li class="mb-s">1 noche de hospedaje en Toche</li>
+              <li class="mb-s">Alimentación sábado y domingo</li>
+              <li class="mb-s">Asistencia mecánica y primeros auxilios</li>
+              <li class="mb-s">Seguro de asistencia</li>
+              <li class="mb-s">Fotografía y video profesional</li>
+            </ul>
+          </div>
+          <div class="inclusion-column excludes p-l">
+            <h3 class="feature-title mb-m">❌ No incluye</h3>
+            <ul class="gap-s">
+              <li class="mb-s">Vehículo y combustible</li>
+              <li class="mb-s">Cena de integración del viernes</li>
+              <li class="mb-s">Gastos personales y no especificados</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="content-section pt-xxl pb-xl">
+      <div class="container">
+        <h2 class="section-title mb-m text-center">Galería de Expediciones Anteriores</h2>
+        <p class="section-intro mb-xl text-center">Descubre las experiencias reales de nuestros aventureros en expediciones pasadas. Estas imágenes te darán una idea de lo que vivirás en esta expedición única.</p>
+        
+        <div class="gallery-grid gap-l">
+          <div class="gallery-item">
+            <div class="gallery-preview">
+              <picture>
                 <source srcset="" type="image/webp" data-srcset="images/gallery-preview-1.webp">
                 <img src="" alt="Vista previa Expedición 100" class="preview-image" data-src="images/gallery-preview-1.jpg" loading="lazy" decoding="async">
-            </picture>
-            <div class="google-photos-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-              Google Photos
+              </picture>
+              <div class="google-photos-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                Google Photos
+              </div>
             </div>
+            <div class="gallery-info p-m">
+              <h3 class="gallery-title mb-s">Expedición 100</h3>
+              <p class="gallery-description mb-s">Paisajes majestuosos y palmas de cera</p>
+              <span class="photo-count">+150 fotos</span>
+            </div>
+            <a href="https://photos.app.goo.gl/BvyRcjdqs3vTvYcz9" target="_blank" rel="noopener noreferrer" class="gallery-link">
+              Ver álbum completo →
+            </a>
           </div>
-          <div class="gallery-info">
-            <h3>Expedición 100</h3>
-            <p>Paisajes majestuosos y palmas de cera</p>
-            <span class="photo-count">+150 fotos</span>
-          </div>
-          <a href="https://photos.app.goo.gl/BvyRcjdqs3vTvYcz9" target="_blank" rel="noopener noreferrer" class="gallery-link">
-            Ver álbum completo →
-          </a>
-        </div>
 
-        <div class="gallery-item">
-          <div class="gallery-preview">
-            <picture>
+          <div class="gallery-item">
+            <div class="gallery-preview">
+              <picture>
                 <source srcset="" type="image/webp" data-srcset="images/gallery-preview-2.webp">
                 <img src="" alt="Vista previa Expedición 200" class="preview-image" data-src="images/gallery-preview-2.jpg" loading="lazy" decoding="async">
-            </picture>
-            <div class="google-photos-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-              Google Photos
+              </picture>
+              <div class="google-photos-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                Google Photos
+              </div>
             </div>
+            <div class="gallery-info p-m">
+              <h3 class="gallery-title mb-s">Expedición 200</h3>
+              <p class="gallery-description mb-s">Aventuras 4x4 y vistas panorámicas</p>
+              <span class="photo-count">+120 fotos</span>
+            </div>
+            <a href="https://photos.app.goo.gl/71RbpDh7DwFdfZa4A" target="_blank" rel="noopener noreferrer" class="gallery-link">
+              Ver álbum completo →
+            </a>
           </div>
-          <div class="gallery-info">
-            <h3>Expedición 200</h3>
-            <p>Aventuras 4x4 y vistas panorámicas</p>
-            <span class="photo-count">+120 fotos</span>
-          </div>
-          <a href="https://photos.app.goo.gl/71RbpDh7DwFdfZa4A" target="_blank" rel="noopener noreferrer" class="gallery-link">
-            Ver álbum completo →
-          </a>
-        </div>
 
-        <div class="gallery-item">
-          <div class="gallery-preview">
-            <picture>
+          <div class="gallery-item">
+            <div class="gallery-preview">
+              <picture>
                 <source srcset="" type="image/webp" data-srcset="images/gallery-preview-3.webp">
                 <img src="" alt="Vista previa Expedición 300" class="preview-image" data-src="images/gallery-preview-3.jpg" loading="lazy" decoding="async">
-            </picture>
-            <div class="google-photos-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-              Google Photos
+              </picture>
+              <div class="google-photos-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                Google Photos
+              </div>
             </div>
+            <div class="gallery-info p-m">
+              <h3 class="gallery-title mb-s">Expedición 300</h3>
+              <p class="gallery-description mb-s">Naturaleza salvaje y aventura extrema</p>
+              <span class="photo-count">+200 fotos</span>
+            </div>
+            <a href="https://photos.app.goo.gl/ifNRyV9hJCXzAzVt6" target="_blank" rel="noopener noreferrer" class="gallery-link">
+              Ver álbum completo →
+            </a>
           </div>
-          <div class="gallery-info">
-            <h3>Expedición 300</h3>
-            <p>Naturaleza salvaje y aventura extrema</p>
-            <span class="photo-count">+200 fotos</span>
-          </div>
-          <a href="https://photos.app.goo.gl/ifNRyV9hJCXzAzVt6" target="_blank" rel="noopener noreferrer" class="gallery-link">
-            Ver álbum completo →
-          </a>
         </div>
       </div>
     </section>
 
-    <section id="cupos-disponibles" class="content-section section-colored text-center">
-      <h2>¡Cupos Limitados!</h2>
-      <p class="section-intro">Esta expedición exclusiva está limitada a solo 10 vehículos para garantizar una experiencia personalizada y de calidad.</p>
-      
-      <div class="urgency-container">
-        <!-- Cupos Disponibles -->
-        <div class="spots-urgency">
-          <div class="spots-counter-large">
-            <div class="counter-number-large">3</div>
-            <div class="counter-label-large">cupos disponibles</div>
-          </div>
-          <div class="urgency-message">
-            <p class="spots-left">¡Solo quedan <strong>3 cupos</strong> disponibles!</p>
+    <section id="cupos-disponibles" class="content-section section-colored text-center pt-xxl pb-xl">
+      <div class="container">
+        <h2 class="section-title mb-m">¡Últimos Cupos Disponibles!</h2>
+        <p class="section-intro mb-xl">Expedición exclusiva limitada a 10 vehículos para garantizar una experiencia personalizada.</p>
+        
+        <div class="urgency-container p-xl">
+          <!-- Cupos Disponibles -->
+          <div class="urgency-message text-center">
+            <p class="spots-left mb-s">¡Solo quedan <strong>3 cupos</strong>!</p>
             <p class="guarantee">Reserva segura con reembolso hasta el 21 de octubre</p>
           </div>
-        </div>
-        
-        <!-- Countdown Timer -->
-        <div class="countdown-section">
-          <div class="countdown-header">
-            <h3>⏰ Tiempo Limitado para Inscribirse</h3>
-            <p class="countdown-subtitle">Las inscripciones estarán abiertas hasta el <strong>15 de Noviembre, 2025</strong></p>
-          </div>
           
-          <div class="countdown-display">
-            <div class="countdown-grid">
-              <div class="countdown-item">
-                <div class="countdown-number" id="countdown-days">00</div>
-                <div class="countdown-label">Días</div>
-              </div>
-              <div class="countdown-item">
-                <div class="countdown-number" id="countdown-hours">00</div>
-                <div class="countdown-label">Horas</div>
-              </div>
-              <div class="countdown-item">
-                <div class="countdown-number" id="countdown-minutes">00</div>
-                <div class="countdown-label">Minutos</div>
-              </div>
-              <div class="countdown-item">
-                <div class="countdown-number" id="countdown-seconds">00</div>
-                <div class="countdown-label">Segundos</div>
+          <!-- Countdown Timer -->
+          <div class="countdown-section">
+            <div class="countdown-header mb-m">
+              <h3 class="feature-title mb-s">⏰ Inscripciones Cierran</h3>
+              <p class="countdown-subtitle">Fecha límite: <strong>15 de Noviembre, 2025</strong></p>
+            </div>
+            
+            <div class="countdown-display">
+              <div class="countdown-grid gap-s">
+                <div class="countdown-item p-s">
+                  <div class="countdown-number" id="countdown-days">00</div>
+                  <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-item p-s">
+                  <div class="countdown-number" id="countdown-hours">00</div>
+                  <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item p-s">
+                  <div class="countdown-number" id="countdown-minutes">00</div>
+                  <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-item p-s">
+                  <div class="countdown-number" id="countdown-seconds">00</div>
+                  <div class="countdown-label">Segundos</div>
+                </div>
               </div>
             </div>
           </div>
+          
+          <!-- CTA Unificado -->
+          <div class="unified-cta mt-xl">
+            <p class="urgency-text mb-l">¡Asegura tu lugar antes de que se agoten!</p>
+            <a class="btn btn-primary pulse" href="https://wa.me/573045374705?text=Quiero%20inscribirme%20a%20la%20Expedici%C3%B3n%20Bosque%20de%20Palmas%20%26%20Cerro%20Volc%C3%A1n%20Mach%C3%ADn%20(21-23%20Nov%202025)" target="_blank" rel="noopener noreferrer">
+              ¡Reserva tu cupo ahora! →
+            </a>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section id="registro" class="content-section section-colored pt-xxl pb-xl">
+      <div class="container">
+        <h2 class="section-title mb-m text-center">¡Únete a esta expedición única!</h2>
+        <p class="section-intro mb-xl text-center">Una aventura 4x4 exclusiva y cuidadosamente planeada, con cupos limitados para garantizar una experiencia inolvidable.</p>
         
-        <!-- CTA Unificado -->
-        <div class="unified-cta">
-          <p class="urgency-text">¡No te quedes por fuera de esta experiencia única!</p>
+        <div class="pricing-info gap-l mb-xl">
+          <div class="price-highlight p-l">
+            <span class="price-label mb-s">Inversión por persona</span>
+            <span class="price-amount mb-s">$580.550</span>
+            <span class="price-note">Todo incluido: hospedaje, alimentación, guías y más</span>
+          </div>
+          <div class="spots-counter p-l">
+            <div class="counter-label mb-s">Cupos disponibles</div>
+            <div class="counter-number mb-s">3 de 10</div>
+            <div class="counter-bar">
+              <div class="counter-progress" style="width: 70%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="benefits-summary p-l mb-xl">
+          <h3 class="feature-title mb-m">Lo que obtienes:</h3>
+          <ul class="checkmark-list gap-s">
+            <li class="mb-s">✓ 1 noche de hospedaje premium en Salento</li>
+            <li class="mb-s">✓ 1 noche de hospedaje en Toche</li>
+            <li class="mb-s">✓ Alimentación sábado y domingo incluidas</li>
+            <li class="mb-s">✓ Guías profesionales y asistencia 24/7</li>
+            <li class="mb-s">✓ Kit de expedición exclusivo</li>
+            <li class="mb-s">✓ Fotos y videos profesionales de tu aventura</li>
+          </ul>
+        </div>
+
+        <div class="payment-info mb-xl">
+          <div class="secure-payment p-l">
+            <h3 class="feature-title mb-m">Pago Seguro y Flexible</h3>
+            <p class="mb-s">Bancolombia Ahorros 75600011901<br>Maritza Gallego Urrego — CC 1094882412</p>
+            <p class="refund-policy">Reembolso del 100% disponible hasta el 21 de octubre</p>
+          </div>
+        </div>
+
+        <div class="cta-actions gap-m">
           <a class="btn btn-primary pulse" href="https://wa.me/573045374705?text=Quiero%20inscribirme%20a%20la%20Expedici%C3%B3n%20Bosque%20de%20Palmas%20%26%20Cerro%20Volc%C3%A1n%20Mach%C3%ADn%20(21-23%20Nov%202025)" target="_blank" rel="noopener noreferrer">
             ¡Reserva tu cupo ahora! →
           </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="registro" class="content-section section-colored">
-      <h2>¡Únete a esta expedición única!</h2>
-      <p class="section-intro">Una aventura 4x4 exclusiva y cuidadosamente planeada, con cupos limitados para garantizar una experiencia inolvidable.</p>
-      
-      <div class="pricing-info">
-        <div class="price-highlight">
-          <span class="price-label">Inversión por persona</span>
-          <span class="price-amount">$580.550</span>
-          <span class="price-note">Todo incluido: hospedaje, alimentación, guías y más</span>
-        </div>
-        <div class="spots-counter">
-          <div class="counter-label">Cupos disponibles</div>
-          <div class="counter-number">3 de 10</div>
-          <div class="counter-bar">
-            <div class="counter-progress" style="width: 70%"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="benefits-summary">
-        <h3>Lo que obtienes:</h3>
-        <ul class="checkmark-list">
-          <li>✓ 1 noche de hospedaje premium en Salento</li>
-          <li>✓ 1 noche de hospedaje en Toche</li>
-          <li>✓ Alimentación sábado y domingo incluidas</li>
-          <li>✓ Guías profesionales y asistencia 24/7</li>
-          <li>✓ Kit de expedición exclusivo</li>
-          <li>✓ Fotos y videos profesionales de tu aventura</li>
-        </ul>
-      </div>
-
-      <div class="payment-info">
-        <div class="secure-payment">
-          <h3>Pago Seguro y Flexible</h3>
-          <p>Bancolombia Ahorros 75600011901<br>Maritza Gallego Urrego — CC 1094882412</p>
-          <p class="refund-policy">Reembolso del 100% disponible hasta el 21 de octubre</p>
-        </div>
-      </div>
-
-      <div class="cta-actions">
-        <a class="btn btn-primary pulse" href="https://wa.me/573045374705?text=Quiero%20inscribirme%20a%20la%20Expedici%C3%B3n%20Bosque%20de%20Palmas%20%26%20Cerro%20Volc%C3%A1n%20Mach%C3%ADn%20(21-23%20Nov%202025)" target="_blank" rel="noopener noreferrer">
-          ¡Reserva tu cupo ahora! →
-        </a>
-        <p class="cta-urgency">¡No te quedes por fuera de esta experiencia única!</p>
+          <p class="cta-urgency">¡No te quedes por fuera de esta experiencia única!</p>
       </div>
     </section>
   </main>
