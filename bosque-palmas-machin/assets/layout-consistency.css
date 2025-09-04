@@ -1,0 +1,170 @@
+/* Layout Consistency Overrides (scoped to main.gp-page-container) */
+
+/* 1) Envolver cada sección directa con el mismo ancho y centrado */
+.gp-page-container > section {
+  max-width: var(--maxw);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 2) Evitar doble padding cuando hay .container interno */
+.gp-page-container > section > .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* 3) Normalizar paddings que reducen ancho en grids internos sin tocar hero */
+.gp-page-container > section :is(
+  .benefits-grid,
+  .features-grid,
+  .inclusion-grid,
+  .gallery-grid
+) {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Centrar explícitamente el countdown grid */
+.gp-page-container > section .countdown-grid {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Conservar centrado en bloques de pricing */
+.gp-page-container > section .pricing-info {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Alinear ancho de textos de introducción con el ancho de contenido y sin padding */
+.gp-page-container > section .section-intro {
+  max-width: var(--maxw);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0; /* eliminar padding lateral heredado */
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+/* Coincidir padding horizontal del h2 para el p.section-intro adyacente dentro de .container */
+.gp-page-container > section > .container h2 + .section-intro {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 0; /* evitar doble espacio con el margin-bottom del h2 */
+}
+
+/* Excepción: Ruta y Experiencias (#aventura) sin padding adicional en el p.section-intro */
+.gp-page-container > section#aventura > .container h2 + .section-intro,
+/* Excepción: Experiencias de Expediciones Anteriores (#galeria) */
+.gp-page-container > section#galeria > .container h2 + .section-intro,
+/* Excepción: Tu Aventura, Completamente Cubierta (#incluye) */
+.gp-page-container > section#incluye > .container h2 + .section-intro {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* 4) Opcional: si hay wrappers con .p-*, garantizar que el ancho visual no crezca */
+.gp-page-container > section [class*=" p-"]:where(.benefits-grid, .features-grid) {
+  box-sizing: border-box;
+}
+
+/* 5) Responsive: mantener la lógica en móvil sin introducir nuevos paddings */
+@media (max-width: 768px) {
+  .gp-page-container > section {
+    max-width: var(--maxw);
+  }
+  .gp-page-container > section > .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .gp-page-container > section :is(
+    .benefits-grid,
+    .features-grid,
+    .inclusion-grid,
+    .gallery-grid
+  ) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .gp-page-container > section .pricing-info,
+  .gp-page-container > section .countdown-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .gp-page-container > section .section-intro {
+    max-width: var(--maxw);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0; /* asegurar sin padding en móvil */
+  }
+  .gp-page-container > section > .container h2 + .section-intro {
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-top: 0;
+  }
+}
+
+/* 6) Justificado global en desktop para mejorar bloque visual */
+@media (min-width: 1024px) {
+  .gp-page-container > section .section-intro {
+    text-align: justify;
+    text-align-last: left; /* mantiene última línea alineada para evitar huecos */
+    hyphens: auto;
+  }
+}
+
+/* Ajuste de espaciado para CTA unificado: reducir espacio superior excesivo */
+.gp-page-container > section .unified-cta.mt-xl {
+  margin-top: 0; /* antes: var(--spacing-l) */
+}
+.gp-page-container > section .unified-cta {
+  padding-top: var(--spacing-m); /* mantener ajuste de padding interno */
+}
+
+@media (max-width: 768px) {
+  .gp-page-container > section .unified-cta.mt-xl {
+    margin-top: 0; /* antes: var(--spacing-m) */
+  }
+  .gp-page-container > section .unified-cta {
+    padding-top: var(--spacing-s);
+  }
+}
+
+/* Separación visual entre #cupos-disponibles y #registro */
+.gp-page-container > section#registro {
+  margin-top: var(--spacing-l);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+@media (max-width: 768px) {
+  .gp-page-container > section#registro {
+    margin-top: var(--spacing-m);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Consistencia tipográfica de CTAs principales (Itinerario, Cupos, Registro) */
+.gp-page-container :is(
+  .itinerary-cta .btn,
+  .unified-cta .btn,
+  .cta-actions .btn
+) {
+  font-size: 1.1rem;         /* unificar tamaño */
+  line-height: 1.1;          /* altura de línea consistente */
+  font-weight: var(--font-semibold);
+  padding: 16px 32px;        /* mismo padding visual */
+  text-transform: none;      /* evitar variaciones de caja */
+}
+
+@media (max-width: 768px) {
+  .gp-page-container :is(
+    .itinerary-cta .btn,
+    .unified-cta .btn,
+    .cta-actions .btn
+  ) {
+    font-size: 1rem;
+    padding: 14px 28px;
+  }
+}

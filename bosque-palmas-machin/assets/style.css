@@ -42,7 +42,7 @@ a[href^="#"]:hover {
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  background: var(--brand);
   transform: scaleX(0);
   transform-origin: left;
   z-index: 1000;
@@ -81,6 +81,12 @@ a[href^="#"]:hover {
   gap: 12px;
   padding: 12px 20px;
   color: white;
+  text-decoration: none;
+  width: 100%;
+}
+
+.sticky-cta-content:hover {
+  text-decoration: none;
 }
 
 .sticky-cta-text {
@@ -1090,6 +1096,13 @@ p {
   justify-content: center;
   margin-top: 32px;
   width: 100%;
+}
+
+.cta-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* Gallery */
