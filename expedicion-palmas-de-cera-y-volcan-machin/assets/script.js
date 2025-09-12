@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
                      window.location.port === '5500' ||
                      window.location.protocol === 'file:';
   
-  const basePath = isLocalhost ? 'assets/' : '/4x4-travel-eje/bosque-palmas-machin/assets/';
+  const basePath = 'assets/';
   
   // Cargar imágenes optimizadas con WebP support
   document.querySelectorAll('picture').forEach(picture => {
@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Gallery Image Loading System
   initializeGalleryImages();
+  initializeGallerySlider();
   
   // Initialize Countdown Timer
   initializeCountdownTimer();
@@ -144,6 +145,80 @@ function initializeGalleryImages() {
     // Cargar WebP y fallback
     loadOptimizedImage(source, img, webpUrl, fallbackUrl);
   });
+}
+
+// Simple slider for gallery cards
+function initializeGallerySlider() {
+  const slider = document.querySelector('.gallery-slider');
+  if (!slider) return;
+
+  const viewport = slider.querySelector('.slider-viewport');
+  const track = slider.querySelector('.slider-track');
+  const items = Array.from(slider.querySelectorAll('.gallery-item'));
+  const prevBtn = slider.querySelector('.slider-btn.prev');
+  const nextBtn = slider.querySelector('.slider-btn.next');
+
+  if (!viewport || !track || items.length === 0) return;
+
+  // Continuous loop settings
+  const gap = 24;
+  let itemWidth = 0;
+  let offset = 0; // current translateX in px (positive number)
+  let lastTs = 0;
+  const speedPxPerSec = parseFloat(slider.dataset.speed || '60'); // default 60px/s
+  let running = true;
+
+  function getItemsPerView() {
+    if (window.innerWidth <= 768) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+  }
+
+  function measureAndLayout() {
+    const perView = getItemsPerView();
+    itemWidth = (viewport.clientWidth - gap * (perView - 1)) / perView;
+    items.forEach((el) => { el.style.minWidth = `${itemWidth}px`; });
+  }
+
+  function tick(ts) {
+    if (!running) return;
+    if (!lastTs) lastTs = ts;
+    const delta = ts - lastTs;
+    lastTs = ts;
+
+    offset += (speedPxPerSec * delta) / 1000;
+
+    // When we've scrolled one item + gap, move first to end and adjust offset
+    const step = itemWidth + gap;
+    if (step > 0) {
+      while (offset >= step) {
+        track.appendChild(track.firstElementChild);
+        offset -= step;
+      }
+    }
+
+    track.style.transform = `translateX(${-offset}px)`;
+    requestAnimationFrame(tick);
+  }
+
+  function pause() { running = false; lastTs = 0; }
+  function resume() { if (!running) { running = true; requestAnimationFrame(tick); } }
+
+  window.addEventListener('resize', () => { measureAndLayout(); });
+
+  nextBtn?.addEventListener('click', () => { offset += itemWidth + gap; });
+  prevBtn?.addEventListener('click', () => {
+    // Move last to front and compensate offset
+    track.insertBefore(track.lastElementChild, track.firstElementChild);
+    offset -= itemWidth + gap;
+    if (offset < 0) offset = 0;
+  });
+
+  viewport.addEventListener('mouseenter', pause);
+  viewport.addEventListener('mouseleave', resume);
+
+  measureAndLayout();
+  requestAnimationFrame(tick);
 }
 
 function showLoadingState(imgElement) {
@@ -235,7 +310,7 @@ function getWebPUrl(albumNumber) {
                      window.location.protocol === 'file:';
   
   // Para Live Server en puerto 5500
-  const basePath = isLocalhost ? 'assets/' : '/4x4-travel-eje/bosque-palmas-machin/assets/';
+  const basePath = 'assets/';
   const imageUrl = `${basePath}images/gallery-preview-${albumNumber}.webp`;
   
   console.log(`Loading WebP ${albumNumber}:`, imageUrl, 'isLocalhost:', isLocalhost);
@@ -249,7 +324,7 @@ function getFallbackUrl(albumNumber) {
                      window.location.protocol === 'file:';
   
   // Para Live Server en puerto 5500
-  const basePath = isLocalhost ? 'assets/' : '/4x4-travel-eje/bosque-palmas-machin/assets/';
+  const basePath = 'assets/';
   const imageUrl = `${basePath}images/gallery-preview-${albumNumber}.jpg`;
   
   console.log(`Loading fallback ${albumNumber}:`, imageUrl, 'isLocalhost:', isLocalhost);

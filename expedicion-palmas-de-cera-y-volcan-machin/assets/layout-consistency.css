@@ -156,6 +156,10 @@
   font-weight: var(--font-semibold);
   padding: 16px 32px;        /* mismo padding visual */
   text-transform: none;      /* evitar variaciones de caja */
+  min-width: 300px;          /* min-width ajustado para igualar al más ancho */
+  display: inline-flex;      /* para centrar contenido */
+  justify-content: center;   /* centrar texto horizontalmente */
+  align-items: center;       /* centrar verticalmente si hay iconos */
 }
 
 @media (max-width: 768px) {
@@ -166,5 +170,7 @@
   ) {
     font-size: 1rem;
     padding: 14px 28px;
+    min-width: auto;         /* en móvil, no forzar min-width para adaptabilidad */
+    width: 100%;             /* ocupar todo el ancho disponible en móvil */
   }
 }

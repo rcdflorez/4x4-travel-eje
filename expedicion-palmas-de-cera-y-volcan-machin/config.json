@@ -136,19 +136,23 @@
       {
         "name": "Álbum 3",
         "url": "https://photos.app.goo.gl/ifNRyV9hJCXzAzVt6"
+      },
+      {
+        "name": "Álbum 4",
+        "url": "https://photos.app.goo.gl/TVqkiueDsTZdX22s7"
       }
     ]
   },
   "paths": {
-    "base": "/bosque-palmas-machin",
-    "assets": "/bosque-palmas-machin/assets"
+    "base": "/expedicion-palmas-de-cera-y-volcan-machin",
+    "assets": "/expedicion-palmas-de-cera-y-volcan-machin/assets"
   },
   "branding": {
     "company": "4X4 Travel Eje",
     "tagline": "Aventuras 4x4 en Colombia",
     "logo": {
-      "hero": "/bosque-palmas-machin/assets/images/logo/logo-final.png",
-      "footer": "/bosque-palmas-machin/assets/images/logo/logo-final.png"
+      "hero": "assets/images/logo/logo-final.png",
+      "footer": "assets/images/logo/logo-final.png"
     }
   },
   "seo": {
@@ -163,6 +167,6 @@
       "salento",
       "cajamarca"
     ],
-    "canonical": "https://www.overlandenfamilia.com/bosque-palmas-machin/"
+    "canonical": "https://www.overlandenfamilia.com/expedicion-palmas-de-cera-y-volcan-machin/"
   }
 }

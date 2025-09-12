@@ -11,7 +11,9 @@ class ExpeditionConfig {
   }
 
   getBasePath() {
-    return this.isLocalhost() ? '/bosque-palmas-machin' : '/4x4-travel-eje/bosque-palmas-machin';
+    const path = window.location.pathname.replace(/\/$/, '');
+    const parts = path.split('/').filter(Boolean);
+    return parts.length ? `/${parts[0]}` : '';
   }
 
   getAssetsPath() {

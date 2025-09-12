@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark" />
-  <title>Expedición Bosque de Palmas de Cera & Cerro Volcán Machín (21-23 Nov 2025) | 4X4 Travel Eje</title>
+  <title>Expedición Bosque de Palmas de Cera y Cerro Volcán Machín (21-23 Nov 2025) | 4X4 Travel Eje</title>
   <meta name="description" content="Vive un fin de semana 4x4 por el Bosque de Palmas y el volcán Cerro Machín: aventura, paisajes y actividades en grupo. Cupos limitados a 10 vehículos." />
   <meta property="og:site_name" content="4X4 Travel Eje" />
-  <meta property="og:title" content="Expedición Bosque de Palmas de Cera & Cerro Volcán Machín | 21-23 Nov 2025 | 4X4 Travel Eje" />
+  <meta property="og:title" content="Expedición Bosque de Palmas de Cera y Cerro Volcán Machín | 21-23 Nov 2025 | 4X4 Travel Eje" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="Aventura 4x4 exclusiva: 10 vehículos, guías, hospedaje, alimentación y actividades únicas entre Salento y Cajamarca." />
-  <meta property="og:image" content="/4x4-travel-eje/bosque-palmas-machin/assets/images/sharing.png" />
+  <meta property="og:image" content="assets/images/sharing.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Expedición Bosque de Palmas de Cera & Cerro Volcán Machín | 21-23 Nov 2025 | 4X4 Travel Eje" />
+  <meta name="twitter:title" content="Expedición Bosque de Palmas de Cera y Cerro Volcán Machín | 21-23 Nov 2025 | 4X4 Travel Eje" />
   <meta name="twitter:description" content="Vive un fin de semana 4x4 con paisajes únicos, termales y ascenso al volcán Machín. Cupos limitados." />
-  <meta name="twitter:image" content="/4x4-travel-eje/bosque-palmas-machin/assets/images/sharing.png" />
+  <meta name="twitter:image" content="assets/images/sharing.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,9 @@
                         window.location.hostname === '127.0.0.1' ||
                         window.location.protocol === 'file:',
       getBasePath: function() {
-        return this.isLocalhost() ? '/bosque-palmas-machin' : '/4x4-travel-eje/bosque-palmas-machin';
+        const path = window.location.pathname.replace(/\/$/, '');
+        const parts = path.split('/').filter(Boolean);
+        return parts.length ? `/${parts[0]}` : '';
       },
       getAssetsPath: function() {
         return `${this.getBasePath()}/assets`;
@@ -65,7 +67,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Expedición Bosque de Palmas de Cera & Cerro Volcán Machín",
+    "name": "Expedición Bosque de Palmas de Cera y Cerro Volcán Machín",
     "startDate": "2025-11-21",
     "endDate": "2025-11-23",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -81,7 +83,7 @@
       }
     },
     "image": [
-      "/4x4-travel-eje/bosque-palmas-machin/assets/images/sharing.png"
+      "assets/images/sharing.png"
     ],
     "description": "Fin de semana 4x4 con cupo para 10 vehículos: Camino Nacional hacia Toche, bosque de 700 mil palmas de cera, termales del volcán y ascenso en trocha al Cerro Machín.",
     "offers": {
@@ -114,7 +116,7 @@
       </div>
     
       <div class="hero-title mb-m">
-        <h1>Expedición Bosque de Palmas de Cera & Cerro Volcán Machín</h1>
+        <h1>Expedición Bosque de Palmas de Cera y Cerro Volcán Machín</h1>
       </div>
       <div class="expedition-dates mb-l">
         <div class="date-badge p-m">
@@ -249,74 +251,105 @@
         <h2 class="section-title mb-m text-center">Experiencias de Expediciones Anteriores</h2>
         <p class="section-intro mb-xl text-center">Descubre las experiencias reales de otros entusiastas 4x4 que han participado en nuestras expediciones. Estas imágenes muestran exactamente lo que vivirás en esta aventura.</p>
         
-        <div class="gallery-grid gap-l">
-          <div class="gallery-item">
-            <div class="gallery-preview">
-              <picture>
-                <source srcset="" type="image/webp" data-srcset="images/gallery-preview-1.webp">
-                <img src="" alt="Vista previa Expedición 100" class="preview-image" data-src="images/gallery-preview-1.jpg" loading="lazy" decoding="async">
-              </picture>
-              <div class="google-photos-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-                Google Photos
+        <div class="gallery-slider" data-autoplay="true" data-interval="4000">
+          <div class="slider-viewport">
+            <div class="slider-track">
+              <div class="gallery-item">
+                <div class="gallery-preview">
+                  <picture>
+                    <source srcset="" type="image/webp" data-srcset="images/gallery-preview-1.webp">
+                    <img src="" alt="Vista previa Expedición 100" class="preview-image" data-src="images/gallery-preview-1.jpg" loading="lazy" decoding="async">
+                  </picture>
+                  <div class="google-photos-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Google Photos
+                  </div>
+                </div>
+                <div class="gallery-info p-m">
+                  <h3 class="gallery-title mb-s">Expedición 100</h3>
+                  <p class="gallery-description mb-s">Paisajes majestuosos y palmas de cera</p>
+                  <span class="photo-count">+150 fotos</span>
+                </div>
+                <a href="https://photos.app.goo.gl/BvyRcjdqs3vTvYcz9" target="_blank" rel="noopener noreferrer" class="gallery-link">
+                  Ver álbum completo →
+                </a>
               </div>
-            </div>
-            <div class="gallery-info p-m">
-              <h3 class="gallery-title mb-s">Expedición 100</h3>
-              <p class="gallery-description mb-s">Paisajes majestuosos y palmas de cera</p>
-              <span class="photo-count">+150 fotos</span>
-            </div>
-            <a href="https://photos.app.goo.gl/BvyRcjdqs3vTvYcz9" target="_blank" rel="noopener noreferrer" class="gallery-link">
-              Ver álbum completo →
-            </a>
-          </div>
 
-          <div class="gallery-item">
-            <div class="gallery-preview">
-              <picture>
-                <source srcset="" type="image/webp" data-srcset="images/gallery-preview-2.webp">
-                <img src="" alt="Vista previa Expedición 200" class="preview-image" data-src="images/gallery-preview-2.jpg" loading="lazy" decoding="async">
-              </picture>
-              <div class="google-photos-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-                Google Photos
+              <div class="gallery-item">
+                <div class="gallery-preview">
+                  <picture>
+                    <source srcset="" type="image/webp" data-srcset="images/gallery-preview-2.webp">
+                    <img src="" alt="Vista previa Expedición 200" class="preview-image" data-src="images/gallery-preview-2.jpg" loading="lazy" decoding="async">
+                  </picture>
+                  <div class="google-photos-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Google Photos
+                  </div>
+                </div>
+                <div class="gallery-info p-m">
+                  <h3 class="gallery-title mb-s">Expedición 200</h3>
+                  <p class="gallery-description mb-s">Aventuras 4x4 y vistas panorámicas</p>
+                  <span class="photo-count">+120 fotos</span>
+                </div>
+                <a href="https://photos.app.goo.gl/71RbpDh7DwFdfZa4A" target="_blank" rel="noopener noreferrer" class="gallery-link">
+                  Ver álbum completo →
+                </a>
               </div>
-            </div>
-            <div class="gallery-info p-m">
-              <h3 class="gallery-title mb-s">Expedición 200</h3>
-              <p class="gallery-description mb-s">Aventuras 4x4 y vistas panorámicas</p>
-              <span class="photo-count">+120 fotos</span>
-            </div>
-            <a href="https://photos.app.goo.gl/71RbpDh7DwFdfZa4A" target="_blank" rel="noopener noreferrer" class="gallery-link">
-              Ver álbum completo →
-            </a>
-          </div>
 
-          <div class="gallery-item">
-            <div class="gallery-preview">
-              <picture>
-                <source srcset="" type="image/webp" data-srcset="images/gallery-preview-3.webp">
-                <img src="" alt="Vista previa Expedición 300" class="preview-image" data-src="images/gallery-preview-3.jpg" loading="lazy" decoding="async">
-              </picture>
-              <div class="google-photos-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-                Google Photos
+              <div class="gallery-item">
+                <div class="gallery-preview">
+                  <picture>
+                    <source srcset="" type="image/webp" data-srcset="images/gallery-preview-3.webp">
+                    <img src="" alt="Vista previa Expedición 300" class="preview-image" data-src="images/gallery-preview-3.jpg" loading="lazy" decoding="async">
+                  </picture>
+                  <div class="google-photos-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Google Photos
+                  </div>
+                </div>
+                <div class="gallery-info p-m">
+                  <h3 class="gallery-title mb-s">Expedición 300</h3>
+                  <p class="gallery-description mb-s">Naturaleza salvaje y aventura extrema</p>
+                  <span class="photo-count">+200 fotos</span>
+                </div>
+                <a href="https://photos.app.goo.gl/ifNRyV9hJCXzAzVt6" target="_blank" rel="noopener noreferrer" class="gallery-link">
+                  Ver álbum completo →
+                </a>
+              </div>
+
+              <div class="gallery-item">
+                <div class="gallery-preview">
+                  <picture>
+                    <source srcset="" type="image/webp" data-srcset="images/gallery-preview-4.webp">
+                    <img src="" alt="Vista previa Expedición 400" class="preview-image" data-src="images/gallery-preview-4.jpg" loading="lazy" decoding="async">
+                  </picture>
+                  <div class="google-photos-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Google Photos
+                  </div>
+                </div>
+                <div class="gallery-info p-m">
+                  <h3 class="gallery-title mb-s">Expedición 400</h3>
+                  <p class="gallery-description mb-s">Travesía 4x4 entre barro y montaña</p>
+                  <span class="photo-count">+180 fotos</span>
+                </div>
+                <a href="https://photos.app.goo.gl/TVqkiueDsTZdX22s7" target="_blank" rel="noopener noreferrer" class="gallery-link">
+                  Ver álbum completo →
+                </a>
               </div>
             </div>
-            <div class="gallery-info p-m">
-              <h3 class="gallery-title mb-s">Expedición 300</h3>
-              <p class="gallery-description mb-s">Naturaleza salvaje y aventura extrema</p>
-              <span class="photo-count">+200 fotos</span>
-            </div>
-            <a href="https://photos.app.goo.gl/ifNRyV9hJCXzAzVt6" target="_blank" rel="noopener noreferrer" class="gallery-link">
-              Ver álbum completo →
-            </a>
+          </div>
+          <div class="slider-controls">
+            <button class="slider-btn prev" aria-label="Anterior">‹</button>
+            <button class="slider-btn next" aria-label="Siguiente">›</button>
           </div>
         </div>
       </div>
@@ -410,12 +443,12 @@
           <h3 class="feature-title">💰 Información de Pago y Registro</h3>
           
           <div class="payment-details">
-            <p><strong>🏦 Titular:</strong> DANIEL GALLEGO CARMONA</p>
-            <p><strong>🆔 Cédula:</strong> 1005090691</p>
-            <p><strong>🏛️ Banco:</strong> Davivienda</p>
-            <p><strong>💳 Tipo:</strong> Cuenta de Ahorros DAMAS</p>
-            <p><strong>🔢 Número:</strong> 0550488425506489</p>
-            <p><strong>📋 RNT:</strong> 1005090691</p>
+            <p><strong>🏦 Titular</strong> DANIEL GALLEGO CARMONA</p>
+            <p><strong>🆔 Cédula</strong> 1005090691</p>
+            <p><strong>🏛️ Banco</strong> Davivienda</p>
+            <p><strong>💳 Tipo</strong> Cuenta de Ahorros DAMAS</p>
+            <p><strong>🔢 Número</strong> 0550488425506489</p>
+            <p><strong>📋 RNT</strong> 1005090691</p>
           </div>
           
           <div class="document-links">

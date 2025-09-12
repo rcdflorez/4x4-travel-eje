@@ -44,6 +44,12 @@
   min-width: 100px;
 }
 
+/* Mostrar ':' después de la etiqueta en desktop por defecto */
+.payment-details strong::after {
+  content: ':';
+  margin-left: 1px;
+}
+
 /* ========================================
    3. ENLACES DE DOCUMENTOS
    ======================================== */
@@ -92,18 +98,23 @@
   }
   
   .feature-title {
-    font-size: var(--text-lg);
+    font-size: var(--text-xl); /* Mantener jerarquía del resto del sitio en móvil */
   }
   
   .payment-details p {
-    font-size: var(--text-xs);
+    font-size: 1rem; /* Mantener consistencia con el resto del sitio */
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Centrar solo en móvil */
     gap: var(--spacing-xs);
   }
   
   .payment-details strong {
     min-width: auto;
+  }
+  
+  /* En móvil no mostrar ':' después de la etiqueta */
+  .payment-details strong::after {
+    content: '';
   }
   
   .document-links {
