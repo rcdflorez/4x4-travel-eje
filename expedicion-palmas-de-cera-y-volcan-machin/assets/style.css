@@ -558,6 +558,8 @@ a[href^="#"]:hover {
   --brand-2: #16a34a;
   --danger: #ff5a5f;
   --maxw: 900px;
+  --gallery-maxw: 1248px; /* 3 * 400px + 2 * 24px gaps */
+  --gallery-item-maxw: 400px; /* no escalar más allá del tamaño original */
   --radius: 10px;
   --section-padding: 64px;
   --section-padding-mobile: 48px;
@@ -1113,8 +1115,9 @@ p {
 
 /* Gallery Slider */
 .gallery-slider { position: relative; margin: 32px 0 0; }
-.slider-viewport { overflow: hidden; }
-.slider-track { display: flex; gap: 24px; will-change: transform; transition: transform 600ms ease; }
+.slider-viewport { overflow: hidden; max-width: var(--gallery-maxw); margin: 0 auto; }
+.slider-track { margin: 0 auto; }
+.slider-track { display: flex; gap: 24px; will-change: transform; transition: transform 600ms ease; margin: 0 auto; }
 
 .gallery-item {
   background: rgba(255,255,255,0.03);
@@ -1124,6 +1127,7 @@ p {
   transition: all 0.3s ease;
   position: relative;
   min-width: calc((100% - 48px) / 3);
+  max-width: var(--gallery-item-maxw);
 }
 
 .gallery-item:hover {
@@ -1259,6 +1263,22 @@ p {
   .google-photos-badge {
     font-size: 11px;
     padding: 4px 8px;
+  }
+}
+
+/* Tablet: also use 4:3 previews */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gallery-preview {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Desktop: make previews closer to square to match thumbnails */
+@media (min-width: 1025px) {
+  .gallery-preview {
+    height: auto;
+    aspect-ratio: 4 / 3; /* desktop: match original thumbs */
   }
 }
 

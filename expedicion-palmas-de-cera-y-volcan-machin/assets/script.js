@@ -176,7 +176,9 @@ function initializeGallerySlider() {
 
   function measureAndLayout() {
     const perView = getItemsPerView();
-    itemWidth = (viewport.clientWidth - gap * (perView - 1)) / perView;
+    // Calcular ancho por vista pero no exceder el original (400px)
+    const theoretical = (viewport.clientWidth - gap * (perView - 1)) / perView;
+    itemWidth = Math.min(theoretical, 400);
     items.forEach((el) => { el.style.minWidth = `${itemWidth}px`; });
   }
 
