@@ -1,0 +1,234 @@
+/* ========================================
+   MEJORAS MÓVILES PARA ELEMENTOS INTRO
+   ======================================== */
+
+/* ========================================
+   1. CENTRADO DE TEXTO PARA ELEMENTOS INTRO EN MÓVIL
+   ======================================== */
+
+/* Centrado de texto para elementos intro en móviles */
+@media (max-width: 768px) {
+  /* Elementos con clase expedition-intro */
+  .expedition-intro {
+    text-align: center;
+    line-height: 1.7;
+    padding: 0 20px;
+  }
+  
+  /* Elementos con clase section-intro */
+  .section-intro {
+    text-align: center;
+    line-height: 1.7;
+    padding: 0 20px;
+  }
+  
+  /* Títulos de sección centrados en móvil */
+  .section-title {
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  /* Texto de urgencia CTA centrado en móvil */
+  .cta-urgency {
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  /* Mantener centrado para section-intro con text-center */
+  .section-intro.text-center {
+    text-align: center !important;
+  }
+}
+
+/* ========================================
+   2. MEJORAS ADICIONALES DE LEGIBILIDAD MÓVIL
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Mejora del espaciado para textos intro */
+  .expedition-intro,
+  .section-intro {
+    margin-bottom: 28px;
+    font-size: 1.05em;
+    letter-spacing: 0.3px;
+  }
+  
+  /* Ajuste de padding para contenedores */
+  .hero-content .expedition-intro {
+    padding: 0 16px;
+  }
+  
+  .content-section .section-intro {
+    padding: 0 16px;
+  }
+}
+
+/* ========================================
+   3. OPTIMIZACIÓN PARA PANTALLAS MUY PEQUEÑAS
+   ======================================== */
+
+@media (max-width: 480px) {
+  /* Ajustes adicionales para pantallas muy pequeñas */
+  .expedition-intro,
+  .section-intro,
+  .section-title,
+  .cta-urgency {
+    padding: 0 12px;
+    text-align: center;
+  }
+  
+  .expedition-intro,
+  .section-intro {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+  
+  /* Reducción de márgenes en móviles pequeños */
+  .expedition-intro {
+    margin-bottom: 24px;
+  }
+  
+  .section-intro {
+    margin-bottom: 24px;
+  }
+}
+
+/* ========================================
+   4. MEJORAS DE ACCESIBILIDAD MÓVIL
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Mejora del contraste y legibilidad */
+  .expedition-intro,
+  .section-intro {
+    color: var(--text);
+    opacity: 0.95;
+  }
+  
+  /* Ajuste de espaciado entre palabras para mejor legibilidad */
+  .expedition-intro,
+  .section-intro {
+    word-spacing: 0.1em;
+  }
+}
+
+/* ========================================
+   5. COMPATIBILIDAD CON NAVEGADORES MÓVILES
+   ======================================== */
+
+/* Soporte para Safari móvil */
+@supports (-webkit-appearance: none) {
+  @media (max-width: 768px) {
+    .expedition-intro,
+    .section-intro {
+      text-align: center;
+    }
+  }
+}
+
+/* Soporte para Firefox móvil */
+@-moz-document url-prefix() {
+  @media (max-width: 768px) {
+    .expedition-intro,
+    .section-intro {
+      text-align: center;
+    }
+  }
+}
+
+/* ========================================
+   6. MEJORAS ESPECÍFICAS POR SECCIÓN
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Hero section - expedition-intro */
+  .hero-section .expedition-intro {
+    max-width: 100%;
+    margin: 0 auto 28px;
+    padding: 0 20px;
+  }
+  
+  /* Sección de aventura - section-intro */
+  #aventura .section-intro {
+    padding: 0 20px;
+    margin-bottom: 32px;
+  }
+  
+  /* Sección de itinerario - section-intro */
+  #itinerario .section-intro {
+    padding: 0 20px;
+    margin-bottom: 24px;
+  }
+  
+  /* Sección de incluye - section-intro */
+  #incluye .section-intro {
+    padding: 0 20px;
+    margin-bottom: 24px;
+  }
+  
+  /* Sección de galería - section-intro */
+  #galeria .section-intro {
+    padding: 0 20px;
+    margin-bottom: 32px;
+  }
+  
+  /* Sección de cupos disponibles - section-intro */
+  #cupos-disponibles .section-intro {
+    padding: 0 20px;
+    margin-bottom: 32px;
+  }
+  
+  /* Sección de registro - section-intro */
+  #registro .section-intro {
+    padding: 0 20px;
+    margin-bottom: 32px;
+  }
+}
+
+/* ========================================
+   7. AJUSTES DE RESPONSIVE DESIGN
+   ======================================== */
+
+/* Breakpoint intermedio para tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .expedition-intro,
+  .section-intro,
+  .section-title,
+  .cta-urgency {
+    padding: 0 24px;
+    text-align: center;
+  }
+  
+  .expedition-intro,
+  .section-intro {
+    line-height: 1.65;
+  }
+}
+
+/* Breakpoint para tablets pequeñas */
+@media (max-width: 900px) and (min-width: 769px) {
+  .expedition-intro,
+  .section-intro {
+    padding: 0 20px;
+  }
+}
+
+/* ========================================
+   8. MEJORAS DE RENDIMIENTO MÓVIL
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Optimización de renderizado para textos largos */
+  .expedition-intro,
+  .section-intro {
+    will-change: auto;
+    contain: layout style;
+  }
+  
+  /* Mejora de la fluidez del scroll */
+  .expedition-intro,
+  .section-intro {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}

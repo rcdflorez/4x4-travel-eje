@@ -1,0 +1,125 @@
+/* ========================================
+   DISEÑO NATURAL E INTEGRADO PARA PAGO Y RNT
+   Sin estructura anidada innecesaria
+   ======================================== */
+
+/* ========================================
+   1. CONTENEDOR PRINCIPAL
+   ======================================== */
+
+.payment-info {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+}
+
+.feature-title {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--brand);
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+/* ========================================
+   2. DETALLES DE PAGO
+   ======================================== */
+
+.payment-details {
+  margin-bottom: var(--spacing-xl);
+}
+
+.payment-details p {
+  margin: var(--spacing-s) 0;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-details strong {
+  color: var(--brand);
+  font-weight: 600;
+  min-width: 100px;
+}
+
+/* ========================================
+   3. ENLACES DE DOCUMENTOS
+   ======================================== */
+
+.document-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-m);
+  flex-wrap: wrap;
+}
+
+.doc-link {
+  color: var(--brand);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1px solid transparent;
+}
+
+.doc-link:hover {
+  border-bottom-color: var(--brand);
+}
+
+/* ========================================
+   4. RESPONSIVE DESIGN
+   ======================================== */
+
+@media (min-width: 768px) {
+  .payment-details p {
+    font-size: var(--text-base);
+  }
+  
+  .payment-details strong {
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-info {
+    padding: var(--spacing-l);
+  }
+  
+  .feature-title {
+    font-size: var(--text-lg);
+  }
+  
+  .payment-details p {
+    font-size: var(--text-xs);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+  
+  .payment-details strong {
+    min-width: auto;
+  }
+  
+  .document-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-s);
+  }
+  
+  .doc-link {
+    font-size: var(--text-xs);
+    padding: var(--spacing-xs) var(--spacing-s);
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-info {
+    padding: var(--spacing-m);
+  }
+}
