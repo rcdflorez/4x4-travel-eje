@@ -795,6 +795,49 @@ p {
   padding: 0 16px;
 }
 
+/* Reveal animations */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 360ms ease, transform 360ms ease; }
+  .reveal.reveal-left { transform: translateX(-16px); }
+  .reveal.reveal-right { transform: translateX(16px); }
+  .reveal.in-view { opacity: 1; transform: none; }
+  
+  /* Stagger utilities */
+  .reveal-stagger-1 { transition-delay: 60ms; }
+  .reveal-stagger-2 { transition-delay: 120ms; }
+  .reveal-stagger-3 { transition-delay: 180ms; }
+  .reveal-stagger-4 { transition-delay: 240ms; }
+  .reveal-stagger-5 { transition-delay: 300ms; }
+}
+
+/* Mobile: animación más perceptible */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .reveal { transform: translateY(24px); transition-duration: 420ms; }
+  .reveal.reveal-left { transform: translateX(-24px); }
+  .reveal.reveal-right { transform: translateX(24px); }
+}
+
+/* Fix móvil: evitar desplazamientos laterales en columnas de incluye/no-incluye */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .inclusion-column.reveal-left,
+  .inclusion-column.reveal-right { transform: translateY(24px); }
+  .inclusion-grid { overflow-x: hidden; }
+}
+
+/* Móvil: eliminar scroll horizontal en #incluye y asegurar una columna */
+@media (max-width: 768px) {
+  #incluye, #incluye .container { overflow-x: hidden; }
+  #incluye .inclusion-grid { grid-template-columns: 1fr; gap: 24px; width: 100%; }
+  #incluye .inclusion-grid, 
+  #incluye .inclusion-column { overflow-y: visible; max-height: none; }
+  #incluye.content-section { padding: 40px 0 32px; }
+}
+
+/* Móvil: simplificar reveal en #incluye para evitar scroll interno */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  #incluye .reveal { transform: none !important; transition: opacity 360ms ease; }
+}
+
 
 
 /* Buttons */

@@ -124,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize Sticky CTA Behavior
   initializeStickyCTA();
+
+  // Initialize Scroll Reveal Animations
+  initializeScrollReveal();
 });
 
 // Gallery Image Loading - Static Images with WebP Support
@@ -720,4 +723,24 @@ function initializeStickyCTA() {
   });
   
   console.log('Sticky CTA behavior initialized');
+}
+
+// Scroll Reveal System
+function initializeScrollReveal(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (!revealEls.length) return;
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        // Forzar reflow ligero antes de aplicar in-view para asegurar transición
+        void el.offsetWidth;
+        el.classList.add('in-view');
+        obs.unobserve(el);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+  revealEls.forEach((el) => io.observe(el));
 }
