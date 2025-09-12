@@ -163,16 +163,19 @@ function initializeGallerySlider() {
   const items = Array.from(slider.querySelectorAll('.gallery-item'));
   const prevBtn = slider.querySelector('.slider-btn.prev');
   const nextBtn = slider.querySelector('.slider-btn.next');
+  const isNativeScroll = false;
 
   if (!viewport || !track || items.length === 0) return;
 
-  // Continuous loop settings
+  // Settings (modelo por índices)
   const gap = 24;
   let itemWidth = 0;
-  let offset = 0; // current translateX in px (positive number)
+  let currentIndex = 0; // índice del primer elemento visible
+  let offset = 0; // desplazamiento residual durante drag
   let lastTs = 0;
-  const speedPxPerSec = parseFloat(slider.dataset.speed || '60'); // default 60px/s
-  let running = true;
+  const speedPxPerSec = parseFloat(slider.dataset.speed || '50');
+  let running = window.innerWidth > 768; // autoplay solo desktop
+  let dragging = false;
 
   function getItemsPerView() {
     if (window.innerWidth <= 768) return 1;
@@ -182,10 +185,26 @@ function initializeGallerySlider() {
 
   function measureAndLayout() {
     const perView = getItemsPerView();
-    // Calcular ancho por vista pero no exceder el original (400px)
-    const theoretical = (viewport.clientWidth - gap * (perView - 1)) / perView;
-    itemWidth = Math.min(theoretical, 400);
-    items.forEach((el) => { el.style.minWidth = `${itemWidth}px`; });
+    if (perView === 1) {
+      // En móvil: mostrar "peek" de la siguiente card (p.ej. 88% del ancho)
+      const vw = Math.round(viewport.getBoundingClientRect().width);
+      itemWidth = Math.floor(vw * 0.73); // 27% peek (aumentado +10%)
+      items.forEach((el) => {
+        el.style.minWidth = `${itemWidth}px`;
+        el.style.maxWidth = `${itemWidth}px`;
+        el.style.flex = `0 0 ${itemWidth}px`;
+      });
+    } else {
+      // En tablet/desktop: calcular por columna y no exceder 400px para no pixelar
+      const theoretical = (viewport.clientWidth - gap * (perView - 1)) / perView;
+      itemWidth = Math.min(Math.round(theoretical), 400);
+      items.forEach((el) => {
+        el.style.minWidth = `${itemWidth}px`;
+        el.style.maxWidth = `${itemWidth}px`;
+        el.style.flex = `0 0 ${itemWidth}px`;
+      });
+    }
+    applyTransform();
   }
 
   function tick(ts) {
@@ -194,71 +213,86 @@ function initializeGallerySlider() {
     const delta = ts - lastTs;
     lastTs = ts;
 
-    offset += (speedPxPerSec * delta) / 1000;
-
-    // When we've scrolled one item + gap, move first to end and adjust offset
-    const step = itemWidth + gap;
-    if (step > 0) {
+    // Desktop: loop infinito por transform; Móvil: no autoplay
+    if (window.innerWidth > 768) {
+      const step = itemWidth + gap;
+      offset += (speedPxPerSec * delta) / 1000;
       while (offset >= step) {
         track.appendChild(track.firstElementChild);
         offset -= step;
       }
+      track.style.transition = 'transform 300ms linear';
+      track.style.transform = `translateX(${-offset}px)`;
     }
-
-    track.style.transform = `translateX(${-offset}px)`;
     requestAnimationFrame(tick);
   }
 
   function pause() { running = false; lastTs = 0; }
   function resume() { if (!running) { running = true; requestAnimationFrame(tick); } }
 
+  function applyTransform() {
+    const base = -(currentIndex * (itemWidth + gap));
+    track.style.transition = dragging ? 'none' : 'transform 300ms ease-out';
+    track.style.transform = `translateX(${base - offset}px)`;
+  }
+
   window.addEventListener('resize', () => { measureAndLayout(); });
 
-  nextBtn?.addEventListener('click', () => { offset += itemWidth + gap; });
-  prevBtn?.addEventListener('click', () => {
-    // Move last to front and compensate offset
-    track.insertBefore(track.lastElementChild, track.firstElementChild);
-    offset -= itemWidth + gap;
-    if (offset < 0) offset = 0;
-  });
+  nextBtn?.addEventListener('click', () => { pause(); slideBy(1); });
+  prevBtn?.addEventListener('click', () => { pause(); slideBy(-1); });
+
+  function slideBy(direction) {
+    const perView = getItemsPerView();
+    const total = items.length;
+    currentIndex = (currentIndex + direction * perView + total) % total;
+    offset = 0;
+    applyTransform();
+  }
 
   viewport.addEventListener('mouseenter', pause);
-  viewport.addEventListener('mouseleave', resume);
+  viewport.addEventListener('mouseleave', () => { if (!isNativeScroll) resume(); });
 
-  // Touch/drag support
+  // Drag support con índice y snap
   let isPointerDown = false;
   let startX = 0;
   let startOffset = 0;
   function onPointerDown(e){
-    isPointerDown = true;
+    e.preventDefault && e.preventDefault();
+    isPointerDown = true; dragging = true; viewport.classList.add('dragging');
     viewport.setPointerCapture?.(e.pointerId);
     pause();
-    startX = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
-    startOffset = offset;
+    startX = (e.touches ? e.touches[0].clientX : e.clientX) || 0;
+    startOffset = 0; offset = 0; // offset residual solo durante drag
+    document.body.style.overflowY = 'hidden';
   }
   function onPointerMove(e){
     if(!isPointerDown) return;
-    const x = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
-    const delta = startX - x; // drag left moves forward
-    offset = Math.max(0, startOffset + delta);
-    track.style.transform = `translateX(${-offset}px)`;
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) || 0;
+    const delta = startX - x;
+    const step = itemWidth + gap;
+    // limitar delta a un rango razonable antes de cambiar índice
+    offset = delta;
+    if (delta > step/2) { currentIndex = (currentIndex + 1) % items.length; startX = x; offset = 0; }
+    if (delta < -step/2) { currentIndex = (currentIndex - 1 + items.length) % items.length; startX = x; offset = 0; }
+    applyTransform();
   }
   function onPointerUp(){
     if(!isPointerDown) return;
-    isPointerDown = false;
-    resume();
+    isPointerDown = false; dragging = false; viewport.classList.remove('dragging');
+    offset = 0; applyTransform();
+    document.body.style.overflowY = '';
+    if (window.innerWidth > 768) resume();
   }
-  viewport.addEventListener('pointerdown', onPointerDown, { passive: true });
-  viewport.addEventListener('pointermove', onPointerMove, { passive: true });
-  viewport.addEventListener('pointerup', onPointerUp, { passive: true });
-  viewport.addEventListener('pointercancel', onPointerUp, { passive: true });
-  // Fallback for older touch events
-  viewport.addEventListener('touchstart', onPointerDown, { passive: true });
-  viewport.addEventListener('touchmove', onPointerMove, { passive: true });
-  viewport.addEventListener('touchend', onPointerUp, { passive: true });
+  viewport.addEventListener('pointerdown', onPointerDown, { passive: false });
+  viewport.addEventListener('pointermove', onPointerMove, { passive: false });
+  viewport.addEventListener('pointerup', onPointerUp, { passive: false });
+  viewport.addEventListener('pointercancel', onPointerUp, { passive: false });
+  viewport.addEventListener('touchstart', onPointerDown, { passive: false });
+  viewport.addEventListener('touchmove', onPointerMove, { passive: false });
+  viewport.addEventListener('touchend', onPointerUp, { passive: false });
 
   measureAndLayout();
-  requestAnimationFrame(tick);
+  if (window.innerWidth > 768) requestAnimationFrame(tick);
 }
 
 function showLoadingState(imgElement) {

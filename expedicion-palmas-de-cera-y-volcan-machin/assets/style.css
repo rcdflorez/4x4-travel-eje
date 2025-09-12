@@ -1115,9 +1115,9 @@ p {
 
 /* Gallery Slider */
 .gallery-slider { position: relative; margin: 32px 0 0; }
-.slider-viewport { overflow: hidden; max-width: var(--gallery-maxw); margin: 0 auto; touch-action: pan-y; cursor: grab; }
-.slider-track { margin: 0 auto; }
-.slider-track { display: flex; gap: 24px; will-change: transform; transition: transform 600ms ease; margin: 0 auto; }
+.slider-viewport { overflow: hidden; max-width: var(--gallery-maxw); margin: 0 auto; touch-action: pan-x; cursor: grab; overscroll-behavior: contain; user-select: none; }
+.slider-viewport.dragging { cursor: grabbing; }
+.slider-track { display: flex; gap: 24px; will-change: transform; transition: transform 300ms ease-out; margin: 0 auto; }
 
 .gallery-item {
   background: rgba(255,255,255,0.03);
@@ -1128,6 +1128,7 @@ p {
   position: relative;
   min-width: calc((100% - 48px) / 3);
   max-width: var(--gallery-item-maxw);
+  flex: 0 0 auto;
 }
 
 .gallery-item:hover {
@@ -1154,9 +1155,7 @@ p {
   transform: scale(1.05);
 }
 
-.slider-controls { display: flex; justify-content: center; gap: 12px; margin-top: 16px; }
-.slider-btn { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 8px 12px; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; }
-.slider-btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+/* slider controls removed for touch-centric UX */
 
 .google-photos-badge {
   position: absolute;
@@ -1241,12 +1240,14 @@ p {
 
 /* Gallery Responsive */
 @media (max-width: 1024px) {
-  .gallery-item { min-width: calc((100% - 24px) / 2); }
+  .gallery-item { min-width: calc((100% - 24px) / 2); flex: 0 0 calc((100% - 24px) / 2); }
 }
 
 @media (max-width: 768px) {
-  .gallery-item { min-width: 100%; }
-  .gallery-preview { height: 160px; }
+  /* Permitir que JS fije un ancho < 100% para mostrar "peek" de la siguiente card */
+  .gallery-item { min-width: auto; flex: 0 0 auto; }
+  .gallery-preview { height: auto; aspect-ratio: 4 / 3; }
+  .gallery-preview .preview-image { width: 100%; height: 100%; object-fit: cover; }
   
   .gallery-info {
     padding: 16px;
@@ -1265,6 +1266,9 @@ p {
     padding: 4px 8px;
   }
 }
+
+/* Native scroll mode for mobile: smooth, snap-based carousel */
+/* Remove native scroll variant (fallback to transform-based slider) */
 
 /* Tablet: also use 4:3 previews */
 @media (min-width: 769px) and (max-width: 1024px) {
