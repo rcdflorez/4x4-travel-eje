@@ -263,27 +263,30 @@ function initializeGallerySlider() {
   }
 
   viewport.addEventListener('mouseenter', pause);
-  viewport.addEventListener('mouseleave', () => { if (!isNativeScroll) resume(); });
+  viewport.addEventListener('mouseleave', () => { if (window.innerWidth > 768) resume(); });
 
-  // Drag support con índice y snap
+  // Drag support (versión anterior estable) + fix para enlaces
   let isPointerDown = false;
   let startX = 0;
   let startOffset = 0;
+  let moved = false;
   function onPointerDown(e){
-    e.preventDefault && e.preventDefault();
-    isPointerDown = true; dragging = true; viewport.classList.add('dragging');
+    // Si el evento proviene de un enlace, no interceptar
+    if (e.target && typeof e.target.closest === 'function' && e.target.closest('a')) return;
+    isPointerDown = true; moved = false; dragging = true; viewport.classList.add('dragging');
     viewport.setPointerCapture?.(e.pointerId);
     pause();
     startX = (e.touches ? e.touches[0].clientX : e.clientX) || 0;
-    startOffset = 0; offset = 0; // offset residual solo durante drag
+    startOffset = 0; offset = 0;
     document.body.style.overflowY = 'hidden';
   }
   function onPointerMove(e){
     if(!isPointerDown) return;
     const x = (e.touches ? e.touches[0].clientX : e.clientX) || 0;
-    const delta = startX - x;
+    const delta = startX - x; // izquierda => +
+    if (Math.abs(delta) > 3) moved = true;
+    if (moved) e.preventDefault && e.preventDefault();
     const step = itemWidth + gap;
-    // limitar delta a un rango razonable antes de cambiar índice
     offset = delta;
     if (delta > step/2) { currentIndex = (currentIndex + 1) % items.length; startX = x; offset = 0; }
     if (delta < -step/2) { currentIndex = (currentIndex - 1 + items.length) % items.length; startX = x; offset = 0; }
