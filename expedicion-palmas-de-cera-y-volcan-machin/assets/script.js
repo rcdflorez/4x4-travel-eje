@@ -217,12 +217,25 @@ function initializeGallerySlider() {
     if (window.innerWidth > 768) {
       const step = itemWidth + gap;
       offset += (speedPxPerSec * delta) / 1000;
+      let recycled = false;
       while (offset >= step) {
         track.appendChild(track.firstElementChild);
         offset -= step;
+        recycled = true;
       }
-      track.style.transition = 'transform 300ms linear';
-      track.style.transform = `translateX(${-offset}px)`;
+      if (recycled) {
+        // Evitar rebote: aplicar el nuevo offset sin transición en este frame
+        const prevTransition = track.style.transition;
+        track.style.transition = 'none';
+        track.style.transform = `translateX(${-offset}px)`;
+        // Restaurar transición en el siguiente frame
+        requestAnimationFrame(() => {
+          track.style.transition = prevTransition || 'transform 300ms linear';
+        });
+      } else {
+        track.style.transition = 'transform 300ms linear';
+        track.style.transform = `translateX(${-offset}px)`;
+      }
     }
     requestAnimationFrame(tick);
   }
