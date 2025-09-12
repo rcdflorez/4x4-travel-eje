@@ -106,11 +106,11 @@
   }
 }
 
-/* 6) Justificado global en desktop para mejorar bloque visual */
+/* 6) Tipografía en desktop: evitar justificado para no generar ríos */
 @media (min-width: 1024px) {
   .gp-page-container > section .section-intro {
-    text-align: justify;
-    text-align-last: left; /* mantiene última línea alineada para evitar huecos */
+    text-align: center;
+    text-wrap: pretty;
     hyphens: auto;
   }
 }
@@ -121,6 +121,11 @@
 }
 .gp-page-container > section .unified-cta {
   padding-top: var(--spacing-m); /* mantener ajuste de padding interno */
+}
+
+/* Centrar solo el título de la sección Itinerario */
+#itinerario .section-title {
+  text-align: center;
 }
 
 @media (max-width: 768px) {

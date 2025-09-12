@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "csso-cli": "^4.0.2",
+    "terser": "^5.44.0"
+  }
+}

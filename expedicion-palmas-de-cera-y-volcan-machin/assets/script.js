@@ -28,7 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
     img.src = basePath + img.dataset.src;
   });
   
+  // Defer non-critical slider init slightly to let CSS settle
+  setTimeout(() => initializeHeroSlider(), 0);
+  
   // Enhanced Slider functionality
+  function initializeHeroSlider() {
   const slider = document.querySelector('.hero-background-slider');
   if (!slider) {
     console.log('Slider element not found');
@@ -91,6 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Cambiar imagen cada 6 segundos
   setInterval(changeImage, 6000);
   
+  }
+
   // Enhanced Smooth Scrolling System
   initializeSmoothScrolling();
   

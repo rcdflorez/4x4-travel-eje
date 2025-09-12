@@ -17,52 +17,31 @@
   <meta name="twitter:image" content="assets/images/sharing.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://wa.me">
+  <link rel="dns-prefetch" href="https://wa.me">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    // Configuración de rutas
-    window.pathConfig = {
-      isLocalhost: () => window.location.hostname === 'localhost' || 
-                        window.location.hostname === '127.0.0.1' ||
-                        window.location.protocol === 'file:',
-      getBasePath: function() {
-        const path = window.location.pathname.replace(/\/$/, '');
-        const parts = path.split('/').filter(Boolean);
-        return parts.length ? `/${parts[0]}` : '';
-      },
-      getAssetsPath: function() {
-        return `${this.getBasePath()}/assets`;
-      }
-    };
-
-    // Función para generar rutas dinámicas
-    function getAssetPath(path) {
-      return `${window.pathConfig.getAssetsPath()}/${path}`;
-    }
-
-    // Agregar enlaces dinámicamente
-    const head = document.head;
-    const assets = [
-      { rel: 'apple-touch-icon', sizes: '180x180', href: 'images/apple-touch-icon.png' },
-      { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'images/favicon-32x32.png' },
-      { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'images/favicon-16x16.png' },
-      // Preload crítico solo para la primera imagen hero
-      { rel: 'preload', as: 'image', href: 'images/hero_1.webp', fetchpriority: 'high' },
-      { rel: 'preload', as: 'image', href: 'images/logo/logo-final.png', fetchpriority: 'high' },
-      { rel: 'stylesheet', href: 'design-system.css' },
-      { rel: 'stylesheet', href: 'style.css' },
-      { rel: 'stylesheet', href: 'layout-consistency.css' },
-      { rel: 'stylesheet', href: 'mobile-enhancements.css' },
-      { rel: 'stylesheet', href: 'simplified-payment-styles.css' }
-    ];
-
-    assets.forEach(asset => {
-      const link = document.createElement('link');
-      Object.entries(asset).forEach(([key, value]) => {
-        link[key] = key === 'href' ? getAssetPath(value) : value;
-      });
-      head.appendChild(link);
-    });
-  </script>
+  <style id="critical-css">
+    /* CSS crítico mínimo para evitar FOUC */
+    html, body { margin:0; padding:0; background:#0b0f14; color:#e6eef8; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .container, .gp-page-container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
+    .hero-section { padding: 96px 0 64px; }
+    .hero-background-slider { min-height: 320px; background-position:center; background-size:cover; opacity:.7; transition: opacity .3s ease; }
+    .btn { display:inline-block; border-radius:10px; text-decoration:none; }
+  </style>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="preload" as="image" href="assets/images/hero_1.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/logo/logo-final.png" fetchpriority="high">
+  <link rel="preload" as="style" href="assets/design-system.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" as="style" href="assets/style.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="assets/design-system.min.css">
+    <link rel="stylesheet" href="assets/style.min.css">
+  </noscript>
+  <link rel="stylesheet" href="assets/layout-consistency.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="assets/mobile-enhancements.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="assets/simplified-payment-styles.min.css" media="print" onload="this.media='all'">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -510,7 +489,7 @@
     <p class="copyright">© 2025 4X4 Travel Eje. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="assets/config-loader.js"></script>
-  <script src="assets/script.js"></script>
+  <script src="assets/config-loader.min.js" defer></script>
+  <script src="assets/script.min.js" defer></script>
 </body>
 </html>
