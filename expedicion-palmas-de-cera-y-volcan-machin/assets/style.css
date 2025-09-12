@@ -1115,7 +1115,7 @@ p {
 
 /* Gallery Slider */
 .gallery-slider { position: relative; margin: 32px 0 0; }
-.slider-viewport { overflow: hidden; max-width: var(--gallery-maxw); margin: 0 auto; }
+.slider-viewport { overflow: hidden; max-width: var(--gallery-maxw); margin: 0 auto; touch-action: pan-y; cursor: grab; }
 .slider-track { margin: 0 auto; }
 .slider-track { display: flex; gap: 24px; will-change: transform; transition: transform 600ms ease; margin: 0 auto; }
 

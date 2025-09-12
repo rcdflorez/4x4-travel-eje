@@ -225,6 +225,38 @@ function initializeGallerySlider() {
   viewport.addEventListener('mouseenter', pause);
   viewport.addEventListener('mouseleave', resume);
 
+  // Touch/drag support
+  let isPointerDown = false;
+  let startX = 0;
+  let startOffset = 0;
+  function onPointerDown(e){
+    isPointerDown = true;
+    viewport.setPointerCapture?.(e.pointerId);
+    pause();
+    startX = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+    startOffset = offset;
+  }
+  function onPointerMove(e){
+    if(!isPointerDown) return;
+    const x = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+    const delta = startX - x; // drag left moves forward
+    offset = Math.max(0, startOffset + delta);
+    track.style.transform = `translateX(${-offset}px)`;
+  }
+  function onPointerUp(){
+    if(!isPointerDown) return;
+    isPointerDown = false;
+    resume();
+  }
+  viewport.addEventListener('pointerdown', onPointerDown, { passive: true });
+  viewport.addEventListener('pointermove', onPointerMove, { passive: true });
+  viewport.addEventListener('pointerup', onPointerUp, { passive: true });
+  viewport.addEventListener('pointercancel', onPointerUp, { passive: true });
+  // Fallback for older touch events
+  viewport.addEventListener('touchstart', onPointerDown, { passive: true });
+  viewport.addEventListener('touchmove', onPointerMove, { passive: true });
+  viewport.addEventListener('touchend', onPointerUp, { passive: true });
+
   measureAndLayout();
   requestAnimationFrame(tick);
 }
