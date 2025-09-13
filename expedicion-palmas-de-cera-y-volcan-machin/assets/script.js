@@ -128,7 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize Scroll Reveal Animations
   initializeScrollReveal();
 
-  // Spots animation removed
+  // Animate spots counter when visible
+  initializeSpotsCounterAnimation();
 });
 
 // Gallery Image Loading - Static Images with WebP Support
@@ -750,8 +751,59 @@ function initializeStickyCTA() {
   console.log('Sticky CTA behavior initialized');
 }
 
-// Spots (Cupos disponibles) Animation
-// Spots animation removed
+// Spots (Cupos disponibles) - animación limitada a .spots-counter
+function initializeSpotsCounterAnimation(){
+  const container = document.querySelector('.spots-counter');
+  if (!container) return;
+  const numberEl = container.querySelector('.counter-number');
+  const barEl = container.querySelector('.counter-bar');
+  const progressEl = container.querySelector('.counter-progress');
+  if (!numberEl || !barEl || !progressEl) return;
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Extraer "X de Y" del texto actual
+  const match = (numberEl.textContent || '').match(/(\d+)\s*de\s*(\d+)/i);
+  if (!match) return;
+  const target = parseInt(match[1], 10);
+  const total = parseInt(match[2], 10) || Math.max(target, 1);
+  const targetPct = Math.max(0, Math.min(100, Math.round((target/total)*100)));
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      obs.disconnect();
+
+      if (reduced) {
+        numberEl.textContent = `${target} de ${total}`;
+        progressEl.style.width = `${targetPct}%`;
+        return;
+      }
+
+      const duration = 1000;
+      const start = performance.now();
+      function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+      function step(ts){
+        const t = Math.min(1, (ts - start) / duration);
+        const eased = easeOutCubic(t);
+        // Descender de total -> target
+        const currentVal = Math.round(total - eased * (total - target));
+        const currentPct = Math.round((currentVal / total) * 100);
+        numberEl.textContent = `${currentVal} de ${total}`;
+        progressEl.style.width = `${currentPct}%`;
+        if (t < 1) requestAnimationFrame(step);
+      }
+
+      // Estado inicial (comienza en total disponibles)
+      numberEl.textContent = `${total} de ${total}`;
+      progressEl.style.width = '100%';
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.35 });
+
+  io.observe(container);
+}
 
 // Scroll Reveal System
 function initializeScrollReveal(){
