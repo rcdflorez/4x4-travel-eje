@@ -910,6 +910,49 @@ p {
   max-width: 300px;
   text-align: center;
 }
+
+/* Responsive copy variants for buttons */
+.text-desktop { display: inline !important; }
+.text-mobile { display: none !important; }
+@media (max-width: 768px) {
+  .text-desktop { display: none !important; }
+  .text-mobile { display: inline !important; }
+}
+
+/* Itinerary CTA arrow animation */
+.cta-itinerary {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  border: 0;
+  background: transparent;
+  color: var(--brand);
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.cta-itinerary .cta-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  color: var(--brand);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cta-itinerary .cta-arrow { animation: arrowBounce 1.4s ease-in-out infinite 0.8s; }
+}
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
 .feature-item h3 { 
   color: var(--brand);
   margin: 0 0 16px; 
@@ -1082,6 +1125,8 @@ p {
   border-radius: 4px;
 }
 
+/* Spots loading state removed */
+
 .benefits-summary {
   max-width: 800px;
   margin: 40px auto;
@@ -1182,7 +1227,7 @@ p {
 
 /* Gallery Slider */
 .gallery-slider { position: relative; margin: 32px 0 0; }
-.slider-viewport { overflow: hidden; max-width: var(--gallery-maxw); margin: 0 auto; touch-action: pan-x; cursor: grab; overscroll-behavior: contain; user-select: none; }
+.slider-viewport { overflow: hidden; max-width: var(--gallery-maxw); margin: 0 auto; touch-action: pan-y; cursor: grab; overscroll-behavior: contain; user-select: none; }
 .slider-viewport.dragging { cursor: grabbing; }
 .slider-track { display: flex; gap: 24px; will-change: transform; transition: transform 300ms ease-out; margin: 0 auto; }
 

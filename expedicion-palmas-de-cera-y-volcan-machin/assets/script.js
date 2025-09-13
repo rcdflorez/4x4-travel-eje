@@ -127,6 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize Scroll Reveal Animations
   initializeScrollReveal();
+
+  // Spots animation removed
 });
 
 // Gallery Image Loading - Static Images with WebP Support
@@ -268,38 +270,61 @@ function initializeGallerySlider() {
   viewport.addEventListener('mouseenter', pause);
   viewport.addEventListener('mouseleave', () => { if (window.innerWidth > 768) resume(); });
 
-  // Drag support (versión anterior estable) + fix para enlaces
+  // Drag support con axis-lock + fix para enlaces
   let isPointerDown = false;
   let startX = 0;
+  let startY = 0;
   let startOffset = 0;
   let moved = false;
+  let lockedAxis = null; // 'x' | 'y' | null
   function onPointerDown(e){
     // Si el evento proviene de un enlace, no interceptar
     if (e.target && typeof e.target.closest === 'function' && e.target.closest('a')) return;
-    isPointerDown = true; moved = false; dragging = true; viewport.classList.add('dragging');
-    viewport.setPointerCapture?.(e.pointerId);
-    pause();
+    isPointerDown = true; moved = false; dragging = false; lockedAxis = null; viewport.classList.remove('dragging');
     startX = (e.touches ? e.touches[0].clientX : e.clientX) || 0;
+    startY = (e.touches ? e.touches[0].clientY : e.clientY) || 0;
     startOffset = 0; offset = 0;
-    document.body.style.overflowY = 'hidden';
   }
   function onPointerMove(e){
     if(!isPointerDown) return;
     const x = (e.touches ? e.touches[0].clientX : e.clientX) || 0;
-    const delta = startX - x; // izquierda => +
-    if (Math.abs(delta) > 3) moved = true;
+    const y = (e.touches ? e.touches[0].clientY : e.clientY) || 0;
+    const dx = startX - x;
+    const dy = startY - y;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+    if (!lockedAxis) {
+      if (absDx > 6 || absDy > 6) {
+        lockedAxis = absDx > absDy ? 'x' : 'y';
+        if (lockedAxis === 'x') {
+          dragging = true; viewport.classList.add('dragging');
+          viewport.setPointerCapture?.(e.pointerId);
+          pause();
+        } else {
+          // Dejar que el scroll vertical proceda
+          dragging = false; viewport.classList.remove('dragging');
+        }
+      } else {
+        return;
+      }
+    }
+    if (lockedAxis === 'y') {
+      // No interferir con el scroll vertical
+      return;
+    }
+    // lockedAxis === 'x'
+    if (absDx > 3) moved = true;
     if (moved) e.preventDefault && e.preventDefault();
     const step = itemWidth + gap;
-    offset = delta;
-    if (delta > step/2) { currentIndex = (currentIndex + 1) % items.length; startX = x; offset = 0; }
-    if (delta < -step/2) { currentIndex = (currentIndex - 1 + items.length) % items.length; startX = x; offset = 0; }
+    offset = dx;
+    if (dx > step/2) { currentIndex = (currentIndex + 1) % items.length; startX = x; offset = 0; }
+    if (dx < -step/2) { currentIndex = (currentIndex - 1 + items.length) % items.length; startX = x; offset = 0; }
     applyTransform();
   }
   function onPointerUp(){
     if(!isPointerDown) return;
-    isPointerDown = false; dragging = false; viewport.classList.remove('dragging');
+    isPointerDown = false; dragging = false; viewport.classList.remove('dragging'); lockedAxis = null;
     offset = 0; applyTransform();
-    document.body.style.overflowY = '';
     if (window.innerWidth > 768) resume();
   }
   viewport.addEventListener('pointerdown', onPointerDown, { passive: false });
@@ -724,6 +749,9 @@ function initializeStickyCTA() {
   
   console.log('Sticky CTA behavior initialized');
 }
+
+// Spots (Cupos disponibles) Animation
+// Spots animation removed
 
 // Scroll Reveal System
 function initializeScrollReveal(){
